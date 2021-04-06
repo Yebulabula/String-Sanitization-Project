@@ -15,8 +15,8 @@ pip install Pillow
 python setup.py build_ext  --inplace
 
 ## Dataset:
-SYN (synthetic dataset) 
-DNA (the genome of Escherichia coli)  
+SYN (synthetic dataset). 
+DNA (the genome of Escherichia coli).
 TRU (Trucks)
 
 ## Examples
