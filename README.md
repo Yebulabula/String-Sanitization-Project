@@ -19,48 +19,36 @@ python setup.py build_ext  --inplace
 - DNA (the genome of Escherichia coli)
 - TRU (Trucks)
 
-## Examples
-- [ai/size-limit](https://github.com/ai/size-limit#readme) - Project logo, clear description, screenshot, step-by-step installing instructions.
-- [aimeos/aimeos-typo3](https://github.com/aimeos/aimeos-typo3#readme) - Project logo. Clear description of what the project does. Demo screenshot. TOC for easy navigation. Easy installation and setup sections with screenshots. Links for further reading.
-- [alichtman/stronghold](https://github.com/alichtman/stronghold#readme) - Project logo. Clear description of what the project does. GIF Demo. TOC for easy navigation. Badges. Links for further reading. Simple install instructions.
-- [amitmerchant1990/electron-markdownify](https://github.com/amitmerchant1990/electron-markdownify#readme) - Project logo. Minimalist description of what it is. GIF demo of the project. Key features. How to install guide. Credits.
-- [anfederico/Clairvoyant](https://github.com/anfederico/Clairvoyant#readme) - Multiple badges. Clean logo. Simple install instructions. Clear overview of the project accompanied by a schematic. GIF demo. Extensive code examples.
-- [ngcolombia/medellin](https://github.com/ngcolombia/medellin#readme) - Project banner. Badges for stats. Well placed emoticons. Contributor's photos.
-- [Armync/Arminc-AutoExec](https://github.com/ArmynC/ArminC-AutoExec/#readme) - Rich Markdown functions, modern layout, clear description and compliant with the recommended community standards.
-- [athityakumar/colorls](https://github.com/athityakumar/colorls#readme) - Multiple badges. Clean screenshots. Simple install instructions. TOC for easy navigation. Good contributor guidelines.
-- [ccostan/Home-AssistantConfig](https://github.com/CCOSTAN/Home-AssistantConfig#readme) - Project Banner. Badges. Easy navigation.
-- [choojs/choo](https://github.com/choojs/choo#readme) - Badges, clean, clear. Beautiful little menu above the fold with useful links. An FAQ inside of it for the main questions. Backers. Good language.
-- [Day8/re-frame](https://github.com/Day8/re-frame#readme) - Badges, logo, TOC, etc. Stands out by being a giant, well-written essay about the tech, how to use it, the philosophy behind it, and how it fits into the greater ecosystem.
-- [iterative/dvc](https://github.com/iterative/dvc#readme) - ReStructuredText format example, PyPi compatible. Logo, custom website-like menu. Smooth how-it-works animation. Badges. Nice contribution section with the hall-of-fame.
-- [github-changelog-generator/github-changelog-generator](https://github.com/github-changelog-generator/github-changelog-generator#readme) - TOC for easy navigation. Concise project description. Installation and usage sections. Output example. Great feature overview. List of alternatives. FAQ.
-- [gitpoint/git-point](https://github.com/gitpoint/git-point#readme) - Clear description. Project Logo. App Store logos. TOC. Clean screenshots. List of features. Detailed installation process. Landing Page.
-- [Hexworks/Zircon](https://github.com/Hexworks/zircon#readme) - Dogfood in readme. Clear description of what the project does. Demo screenshot. TOC for easy navigation. Easy installation and setup sections with screenshots. Links for further reading.
-- [iharsh234/WebApp](https://github.com/iharsh234/WebApp#readme) - Project landing page. Clear description of what the project does. Demo screenshot. Simple install and usage sections. Includes an examples section with common uses and a mobile demo section.
-- [jakubroztocil/httpie](https://github.com/jakubroztocil/httpie#readme) - Description of what the project does. Demo screenshots. Project logo. TOC for easy navigation. Build badges. Quick and simple installation and usage sections. Includes an examples section.
-- [karan/joe](https://github.com/karan/joe#readme) - Project logo. Clear description of what the project does. GIF demo. Easy install and usage sections.
-- [Martinsos/edlib](https://github.com/Martinsos/edlib#readme) - Informative badges (build, version, publication). Concise description. Feature list. TOC. Screenshots. Concise instructions with examples for building and including in your project. Common code examples to get you started quickly.
-- [nhn/tui.editor](https://github.com/nhn/tui.editor#readme) - Project logo. Clear overview of project features with a demo GIF. Badges. TOC for easy navigation. Colorful icons in front of titles.
-- [node-chat](https://github.com/IgorAntun/node-chat#readme) - Project screenshot. Informative badges. Clear description. Easy installation/use instructions. Live demo.
-- [NSRare/NSGIF](https://github.com/NSRare/NSGIF#readme) - Project logo. GIF Demo. Usage artwork. Usage code samples.
-- [sidneycadot/oeis](https://github.com/sidneycadot/oeis#readme) - Overview. List of required dependencies. Complete list of all files in the repo and what their function is. Visual graph of how it all ties together.
-- [php-censor/php-censor](https://github.com/php-censor/php-censor#readme) - Multiple badges, project logo, screenshots, step-by-step installing and upgrading instructions, TOC for easy navigation.
-- [Rebilly/redoc](https://github.com/Redocly/redoc#readme) - Multiple badges, project logo, live demo link, GIF-animations of the key features, TL;DR usage.
-- [React on lambda](https://github.com/sultan99/react-on-lambda#readme) - Project logo, comics to present the main idea, badges, examples with code snippets, demo projects, api documentations, editor configurations.
-- [React Parallax Tilt](https://github.com/mkosir/react-parallax-tilt#readme) - GIF demo. Multiple badges. Feature list. Great live demo with code examples. Easy to follow instructions for local development set up.
-- [rstacruz/hicat](https://github.com/rstacruz/hicat#readme) - GIF demo. Easy installation and setup sections with screenshots. Build badges. Great examples of use cases.
-- [ryanoasis/nerd-fonts](https://github.com/ryanoasis/nerd-fonts#readme) - Clean project logo. Brief description at top. Sankey diagram, quick links, badges, OS specific icons, TOC, detailed release changelog.
-- [sebyddd/SDVersion](https://github.com/sebyddd/SDVersion#readme) - Project logo. Build badges. Documentation structuring for multiple programming languages. Usage examples.
-- [shama/gaze](https://github.com/shama/gaze#readme) - Project logo. Concise description. Feature list. Usage section. FAQ. Great API documentation. Release history.
-- [sindresorhus/pageres](https://github.com/sindresorhus/pageres#readme) - Project logo. Clear description of what the project does. Build badges. Demo screenshot. Simple install and usage sections. Includes an examples section with common uses.
-- [sourcerer-io/sourcerer-app](https://github.com/sourcerer-io/sourcerer-app#readme) - Clean animated screenshot. Customized call to action badge. Usage showcase.
-- [sr6033/lterm](https://github.com/sr6033/lterm#readme) - Clean logo using characters. Brief updates on development. Detailed contribution guidelines. Contribution suggestions.
-- [sulu/sulu](https://github.com/sulu/sulu#readme) - Project logo, useful badges, clear instructions on where to find more information and report bugs, GIF screenshots, nice use of emoticons.
-- [supunlakmal/thismypc](https://github.com/supunlakmal/thismypc#readme) - Project logo. Useful badges. Web site URL. Screenshot. GIF step-by-step instructions for installation. Project folder structure.
-- [teles/array-mixer](https://github.com/teles/array-mixer#readme) - Clean project logo, badges. Table of contents. Contributing section. Many illustrated examples.
-- [thelounge/thelounge](https://github.com/thelounge/thelounge#readme) - Project logo. Useful badges and links (website, docs, demo). Screenshot. Feature list. Step-by-step instructions for installation, development, and testing. Link to the contributing guide. Good mobile summary.
-- [vhesener/Closures](https://github.com/vhesener/Closures#readme) - Project logo, cognitive funnel, animated examples. Color coordinated. Clean documentation.
-- [release-it/release-it](https://github.com/release-it/release-it#readme) - Clear overview of project features with a demo GIF. Badges. Expandable TOC. Usage description and examples. Contribution guidelines. Detailed releases.
-- [dowjones/react-dropdown-tree-select](https://github.com/dowjones/react-dropdown-tree-select#readme) - Clear readme with GIF screenshot for quick demo. Multiple badges, concise ToC, online playground, storybook, detailed description and more.
+## Experimental results (Baseline vs CSD-PLUS)
+- python3 runner.py -w DataSet/SYN/SYN_W.txt -z DataSet/SYN/SYN_2_Z.txt -s DataSet/SYN/pat_2.txt -k 2 -o 0.5 -c 50 -m 1000 -d 10 -t 3 -e 5
+- python3 runner.py -w DataSet/SYN/SYN_W.txt -z DataSet/SYN/SYN_3_Z.txt -s DataSet/SYN/pat_3.txt -k 3 -o 0.5 -c 50 -m 1000 -d 10 -t 3 -e 5
+- python3 runner.py -w DataSet/SYN/SYN_W.txt -z DataSet/SYN/SYN_4_Z.txt -s DataSet/SYN/pat_4.txt -k 4 -o 0.5 -c 50 -m 2000 -d 10 -t 3 -e 5
+- python3 runner.py -w DataSet/SYN/SYN_W.txt -z DataSet/SYN/SYN_5_Z.txt -s DataSet/SYN/pat_5.txt -k 5 -o 0.5 -c 25 -m 3000 -d 10 -t 3 -e 5
+
+- python3 runner.py -w DataSet/SYN/SYN_W.txt -z DataSet/SYN/S5_Z.txt  -s DataSet/SYN/S5.txt  -k 3 -o 0.5 -c 50 -m 1000 -d 10 -t 3 -e 5
+- python3 runner.py -w DataSet/SYN/SYN_W.txt -z DataSet/SYN/S10_Z.txt -s DataSet/SYN/S10.txt -k 3 -o 0.5 -c 50 -m 1000 -d 10 -t 3 -e 5
+- python3 runner.py -w DataSet/SYN/SYN_W.txt -z DataSet/SYN/S15_Z.txt -s DataSet/SYN/S15.txt -k 3 -o 0.5 -c 50 -m 3000 -d 10 -t 3 -e 5
+- python3 runner.py -w DataSet/SYN/SYN_W.txt -z DataSet/SYN/S20_Z.txt -s DataSet/SYN/S20.txt -k 3 -o 0.5 -c 50 -m 3000 -d 10 -t 3 -e 5
+
+- python3 runner.py -w DataSet/TRU/TRU_W.txt -z DataSet/TRU/TRU_3_Z.txt -s DataSet/TRU/pat_3.txt -k 3 -o 0.5 -c 50 -m 1000 -d 10 -t 10 -e 5
+- python3 runner.py -w DataSet/TRU/TRU_W.txt -z DataSet/TRU/TRU_4_Z.txt -s DataSet/TRU/pat_4.txt -k 4 -o 0.5 -c 50 -m 1000 -d 10 -t 10 -e 5
+- python3 runner.py -w DataSet/TRU/TRU_W.txt -z DataSet/TRU/TRU_5_Z.txt -s DataSet/TRU/pat_5.txt -k 5 -o 0.5 -c 50 -m 1000 -d 10 -t 10 -e 5
+- python3 runner.py -w DataSet/TRU/TRU_W.txt -z DataSet/TRU/TRU_6_Z.txt -s DataSet/TRU/pat_6.txt -k 6 -o 0.5 -c 50 -m 1000 -d 10 -t 10 -e 5
+
+- python3 runner.py -w DataSet/TRU/TRU_W.txt -z DataSet/TRU/S20_Z.txt -s DataSet/TRU/S20.txt -k 4 -o 0.5 -c 25 -m 1000 -d 10 -t 5 -e 5
+- python3 runner.py -w DataSet/TRU/TRU_W.txt -z DataSet/TRU/S40_Z.txt -s DataSet/TRU/S40.txt -k 4 -o 0.5 -c 25 -m 1000 -d 10 -t 5 -e 5
+- python3 runner.py -w DataSet/TRU/TRU_W.txt -z DataSet/TRU/S60_Z.txt -s DataSet/TRU/S60.txt -k 4 -o 0.5 -c 25 -m 1000 -d 10 -t 5 -e 5
+- python3 runner.py -w DataSet/TRU/TRU_W.txt -z DataSet/TRU/S80_Z.txt -s DataSet/TRU/S80.txt -k 4 -o 0.5 -c 25 -m 1000 -d 10 -t 5 -e 5
+
+- python3 runner.py -w DataSet/DNA/DNA_W.txt -z DataSet/DNA/DNA_2_Z.txt -s DataSet/DNA/pat_2.txt -k 2 -o 0.5 -c 50 -m 1000 -d 10 -t 10 -e 5
+- python3 runner.py -w DataSet/DNA/DNA_W.txt -z DataSet/DNA/DNA_3_Z.txt -s DataSet/DNA/pat_3.txt -k 3 -o 0.5 -c 50 -m 1000 -d 10 -t 10 -e 5
+- python3 runner.py -w DataSet/DNA/DNA_W.txt -z DataSet/DNA/DNA_4_Z.txt -s DataSet/DNA/pat_4.txt -k 4 -o 0.5 -c 50 -m 1000 -d 10 -t 10 -e 5
+- python3 runner.py -w DataSet/DNA/DNA_W.txt -z DataSet/DNA/DNA_5_Z.txt -s DataSet/DNA/pat_5.txt -k 5 -o 0.5 -c 50 -m 1000 -d 10 -t 10 -e 5
+
+- python3 runner.py -w DataSet/DNA/DNA_W.txt -z DataSet/DNA/S20_Z.txt  -s DataSet/DNA/S20.txt -k 4 -o 0.5 -c 50 -m 1000 -d 10 -t 10 -e 5
+- python3 runner.py -w DataSet/DNA/DNA_W.txt -z DataSet/DNA/S40_Z.txt -s DataSet/DNA/S40.txt -k 4 -o 0.5 -c 50 -m 1000 -d 10 -t 10 -e 5
+- python3 runner.py -w DataSet/DNA/DNA_W.txt -z DataSet/DNA/S60_Z.txt -s DataSet/DNA/S60.txt -k 4 -o 0.5 -c 50 -m 1000 -d 10 -t 10 -e 5
+- python3 runner.py -w DataSet/DNA/DNA_W.txt -z DataSet/DNA/S80_Zs.txt -s DataSet/DNA/S80.txt -k 4 -o 0.5 -c 50 -m 1000 -d 10 -t 10 -e 5
 
 
 
