@@ -60,10 +60,8 @@ III. DNA
 ## References
 
 - Bernardini, G., Chen, H., Conte, A., Grossi, R., Loukides, G., Pisanti, N., ... & Rosone, G. (2019, September). String sanitization: A combinatorial approach. In Joint European Conference on Machine Learning and Knowledge Discovery in Databases (pp. 627-644). Springer, Cham.
-- ["How To Write A Great README"](https://thoughtbot.com/blog/how-to-write-a-great-readme) - *Caleb Thompson (thoughtbot)*
-- ["Readme Driven Development"](http://tom.preston-werner.com/2010/08/23/readme-driven-development.html) - *Tom Preston-Werner*
-- ["Top ten reasons why I won’t use your open source project"](https://changelog.com/posts/top-ten-reasons-why-i-wont-use-your-open-source-project) - *Adam Stacoviak*
-- ["What I learned from an old GitHub project that won 3,000 Stars in a Week"](https://www.freecodecamp.org/news/what-i-learned-from-an-old-github-project-that-won-3-000-stars-in-a-week-628349a5ee14/) - *KyuWoo Choi*
+- Bernardini, Giulia, et al. "Hide and Mine in Strings: Hardness and Algorithms." International Conference on Data Mining (ICDM). 2020.
+- Browne, C. B., Powley, E., Whitehouse, D., Lucas, S. M., Cowling, P. I., Rohlfshagen, P., ... & Colton, S. (2012). A survey of monte carlo tree search methods. IEEE Transactions on Computational Intelligence and AI in games, 4(1), 1-43.
 
 ## Tools
 
