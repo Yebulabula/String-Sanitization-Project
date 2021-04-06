@@ -6,18 +6,18 @@
 Install python 3.8 
 https://www.python.org/downloads/release/python-380/
 
-pip install numpy
-pip install pandas
-pip install matplotlib
-pip install Pillow
+- pip install numpy
+- pip install pandas
+- pip install matplotlib
+- pip install Pillow
 
 ## Modify the content of the file:
 python setup.py build_ext  --inplace
 
 ## Dataset:
-SYN (synthetic dataset). 
-DNA (the genome of Escherichia coli).
-TRU (Trucks)
+- SYN (synthetic dataset)
+- DNA (the genome of Escherichia coli)
+- TRU (Trucks)
 
 ## Examples
 - [ai/size-limit](https://github.com/ai/size-limit#readme) - Project logo, clear description, screenshot, step-by-step installing instructions.
