@@ -59,7 +59,7 @@ III. DNA
 
 ## References
 
-- ["Art of Readme - Learn the art of writing quality READMEs."](https://github.com/noffle/art-of-readme#readme) - *Stephen Whitmore*
+- Bernardini, G., Chen, H., Conte, A., Grossi, R., Loukides, G., Pisanti, N., ... & Rosone, G. (2019, September). String sanitization: A combinatorial approach. In Joint European Conference on Machine Learning and Knowledge Discovery in Databases (pp. 627-644). Springer, Cham.
 - ["How To Write A Great README"](https://thoughtbot.com/blog/how-to-write-a-great-readme) - *Caleb Thompson (thoughtbot)*
 - ["Readme Driven Development"](http://tom.preston-werner.com/2010/08/23/readme-driven-development.html) - *Tom Preston-Werner*
 - ["Top ten reasons why I won’t use your open source project"](https://changelog.com/posts/top-ten-reasons-why-i-wont-use-your-open-source-project) - *Adam Stacoviak*
