@@ -1,15 +1,3 @@
-Config:
-
-Install python 3.8
-pip install pandas
-pip install numpy
-pip install matplotlib
-pip install Pillow
-
-Modify the files run command: 
-
-python setup.py build_ext  --inplace
-
 Experimental Results (CSD-PLUS VS Baseline): 
 
 python3 runner.py -w DataSet/SYN/SYN_W.txt -z DataSet/SYN/SYN_2_Z.txt -s DataSet/SYN/pat_2.txt -k 2 -o 0.5 -c 50 -m 1000 -d 10 -t 3 -e 5
