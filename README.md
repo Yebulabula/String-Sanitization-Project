@@ -65,5 +65,5 @@ III. DNA
 
 ## Tools
 
-- Run Tkinter python-based UI: python user-interface.py
+- Run Tkinter python-based UI: python user_interface.py
 - Run command-line interface: python runner.py <options>
