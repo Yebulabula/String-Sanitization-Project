@@ -1,3 +1,15 @@
+# runner.py
+# 03-04-2021
+# This file is for processing some .txt file and convert them to the string type.
+# Also, it includes all static functions that other scripts may need.
+#
+# https://github.com/Yebulabula/String-Sanitization-Project
+#
+# Author Ye Mao
+# King's College London
+# Version 1.0
+
+
 import time
 import sys
 from optparse import OptionParser
@@ -7,20 +19,10 @@ import DataProcessing
 
 
 def default(str):
+    """
+        The function to return default help message.
+    """
     return str + ' [Default: %default]'
-
-
-def parseAgentArgs(str):
-    if str == None: return {}
-    pieces = str.split(',')
-    opts = {}
-    for p in pieces:
-        if '=' in p:
-            key, val = p.split('=')
-        else:
-            key, val = p, 1
-        opts[key] = val
-    return opts
 
 
 def readCommand(argv):
@@ -83,12 +85,13 @@ if __name__ == '__main__':
 
     d_baseline = solver._get_distortion(solver.baseline())
     sp, nsp = solver._get_distortion(solver.Z)
-    print('Baseline\nSpurious:', sp-d_baseline[0], 'non-spurious:', nsp-d_baseline[1])
+    print('Baseline Distortion Reduction\nSpurious:', sp - d_baseline[0], 'non-spurious:', nsp - d_baseline[1])
     warnings.filterwarnings(action='ignore', category=DeprecationWarning)
     tick = time.time()
+    print('---------------------------')
     d_csd_plus = solver._get_distortion(solver.run())
     tock = time.time()
-    print('CSD-PLUS\nSpurious:', sp-d_csd_plus[0], 'non-spurious:', nsp-d_csd_plus[1])
+    print('CSD-PLUS Distortion Reduction\nSpurious:', sp - d_csd_plus[0], 'non-spurious:', nsp - d_csd_plus[1])
     print('Time consumption in CSD-Plus is', tock - tick)
 
     # solver._exhaustive_search(lst=list(range(len(solver.Z))), n=solver.delta)

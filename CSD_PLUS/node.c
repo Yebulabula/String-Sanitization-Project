@@ -1037,16 +1037,6 @@ static CYTHON_INLINE PyObject* __Pyx_PyObject_CallOneArg(PyObject *func, PyObjec
 /* PyIntCompare.proto */
 static CYTHON_INLINE PyObject* __Pyx_PyInt_NeObjC(PyObject *op1, PyObject *op2, long intval, long inplace);
 
-/* PyObjectCallNoArg.proto */
-#if CYTHON_COMPILING_IN_CPYTHON
-static CYTHON_INLINE PyObject* __Pyx_PyObject_CallNoArg(PyObject *func);
-#else
-#define __Pyx_PyObject_CallNoArg(func) __Pyx_PyObject_Call(func, __pyx_empty_tuple, NULL)
-#endif
-
-/* PyIntCompare.proto */
-static CYTHON_INLINE PyObject* __Pyx_PyInt_EqObjC(PyObject *op1, PyObject *op2, long intval, long inplace);
-
 /* pyobject_as_double.proto */
 static double __Pyx__PyObject_AsDouble(PyObject* obj);
 #if CYTHON_COMPILING_IN_PYPY
@@ -1058,6 +1048,13 @@ static double __Pyx__PyObject_AsDouble(PyObject* obj);
 #define __Pyx_PyObject_AsDouble(obj)\
 ((likely(PyFloat_CheckExact(obj))) ?\
  PyFloat_AS_DOUBLE(obj) : __Pyx__PyObject_AsDouble(obj))
+#endif
+
+/* PyObjectCallNoArg.proto */
+#if CYTHON_COMPILING_IN_CPYTHON
+static CYTHON_INLINE PyObject* __Pyx_PyObject_CallNoArg(PyObject *func);
+#else
+#define __Pyx_PyObject_CallNoArg(func) __Pyx_PyObject_Call(func, __pyx_empty_tuple, NULL)
 #endif
 
 /* GetItemInt.proto */
@@ -1331,13 +1328,12 @@ static const char __pyx_k_ELLS_node[] = "ELLS_node";
 static const char __pyx_k_metaclass[] = "__metaclass__";
 static const char __pyx_k_best_child[] = "best_child";
 static const char __pyx_k_isExpanded[] = "isExpanded";
-static const char __pyx_k_min_reward[] = "min_reward";
 static const char __pyx_k_collections[] = "collections";
 static const char __pyx_k_compute_uct[] = "compute_uct";
 static const char __pyx_k_defaultdict[] = "defaultdict";
 static const char __pyx_k_select_leaf[] = "select_leaf";
 static const char __pyx_k_parent_visits[] = "parent_visits";
-static const char __pyx_k_backpropogation[] = "backpropogation";
+static const char __pyx_k_backpropagation[] = "backpropagation";
 static const char __pyx_k_legal_deletions[] = "legal_deletions";
 static const char __pyx_k_print_attribute[] = "_print_attribute";
 static const char __pyx_k_DummyNode___init[] = "DummyNode.__init__";
@@ -1345,14 +1341,12 @@ static const char __pyx_k_ELLS_node___init[] = "ELLS_node.__init__";
 static const char __pyx_k_ELLS_node_expand[] = "ELLS_node.expand";
 static const char __pyx_k_selected_nodes_R[] = "selected_nodes_R";
 static const char __pyx_k_ELLS_node_refresh[] = "ELLS_node.refresh";
-static const char __pyx_k_is_fully_expanded[] = "_is_fully_expanded";
 static const char __pyx_k_simulation_reward[] = "simulation_reward";
 static const char __pyx_k_cline_in_traceback[] = "cline_in_traceback";
 static const char __pyx_k_ELLS_node_compute_uct[] = "ELLS_node.compute_uct";
 static const char __pyx_k_ELLS_node_select_leaf[] = "ELLS_node.select_leaf";
-static const char __pyx_k_ELLS_node_backpropogation[] = "ELLS_node.backpropogation";
+static const char __pyx_k_ELLS_node_backpropagation[] = "ELLS_node.backpropagation";
 static const char __pyx_k_ELLS_node__print_attribute[] = "ELLS_node._print_attribute";
-static const char __pyx_k_ELLS_node__is_fully_expanded[] = "ELLS_node._is_fully_expanded";
 static const char __pyx_k_The_class_is_to_store_all_infor[] = "\n        The class is to store all information and statistics of tree node.\n    ";
 static const char __pyx_k_The_class_to_construct_the_pare[] = "\n        The class to construct the parent node of the root node.\n    ";
 static PyObject *__pyx_n_s_C;
@@ -1360,9 +1354,8 @@ static PyObject *__pyx_n_s_DummyNode;
 static PyObject *__pyx_n_s_DummyNode___init;
 static PyObject *__pyx_n_s_ELLS_node;
 static PyObject *__pyx_n_s_ELLS_node___init;
-static PyObject *__pyx_n_s_ELLS_node__is_fully_expanded;
 static PyObject *__pyx_n_s_ELLS_node__print_attribute;
-static PyObject *__pyx_n_s_ELLS_node_backpropogation;
+static PyObject *__pyx_n_s_ELLS_node_backpropagation;
 static PyObject *__pyx_n_s_ELLS_node_compute_uct;
 static PyObject *__pyx_n_s_ELLS_node_expand;
 static PyObject *__pyx_n_s_ELLS_node_refresh;
@@ -1370,7 +1363,7 @@ static PyObject *__pyx_n_s_ELLS_node_select_leaf;
 static PyObject *__pyx_kp_s_The_class_is_to_store_all_infor;
 static PyObject *__pyx_kp_s_The_class_to_construct_the_pare;
 static PyObject *__pyx_n_s_UCT;
-static PyObject *__pyx_n_s_backpropogation;
+static PyObject *__pyx_n_s_backpropagation;
 static PyObject *__pyx_n_s_best_child;
 static PyObject *__pyx_n_s_c;
 static PyObject *__pyx_n_s_child;
@@ -1391,7 +1384,6 @@ static PyObject *__pyx_n_s_index;
 static PyObject *__pyx_n_s_inf;
 static PyObject *__pyx_n_s_init;
 static PyObject *__pyx_n_s_isExpanded;
-static PyObject *__pyx_n_s_is_fully_expanded;
 static PyObject *__pyx_n_s_legal;
 static PyObject *__pyx_n_s_legal_deletions;
 static PyObject *__pyx_n_s_log;
@@ -1399,7 +1391,6 @@ static PyObject *__pyx_n_s_main;
 static PyObject *__pyx_n_s_math;
 static PyObject *__pyx_n_s_maxUCT;
 static PyObject *__pyx_n_s_metaclass;
-static PyObject *__pyx_n_s_min_reward;
 static PyObject *__pyx_n_s_module;
 static PyObject *__pyx_n_s_move;
 static PyObject *__pyx_n_s_name;
@@ -1429,11 +1420,10 @@ static PyObject *__pyx_pf_4node_delete(CYTHON_UNUSED PyObject *__pyx_self, PyObj
 static PyObject *__pyx_pf_4node_9ELLS_node___init__(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_state, PyObject *__pyx_v_move, PyObject *__pyx_v_score, PyObject *__pyx_v_c, PyObject *__pyx_v_parent); /* proto */
 static PyObject *__pyx_pf_4node_9ELLS_node_2_print_attribute(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_4node_9ELLS_node_4compute_uct(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_4node_9ELLS_node_6_is_fully_expanded(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_4node_9ELLS_node_8select_leaf(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_4node_9ELLS_node_10backpropogation(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_simulation_reward); /* proto */
-static PyObject *__pyx_pf_4node_9ELLS_node_12expand(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_legal_deletions, PyObject *__pyx_v_c); /* proto */
-static PyObject *__pyx_pf_4node_9ELLS_node_14refresh(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_4node_9ELLS_node_6select_leaf(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_4node_9ELLS_node_8backpropagation(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_simulation_reward); /* proto */
+static PyObject *__pyx_pf_4node_9ELLS_node_10expand(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_legal_deletions, PyObject *__pyx_v_c); /* proto */
+static PyObject *__pyx_pf_4node_9ELLS_node_12refresh(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_4node_9DummyNode___init__(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self); /* proto */
 static PyObject *__pyx_int_0;
 static PyObject *__pyx_int_1;
@@ -1447,8 +1437,7 @@ static PyObject *__pyx_tuple__12;
 static PyObject *__pyx_tuple__14;
 static PyObject *__pyx_tuple__16;
 static PyObject *__pyx_tuple__18;
-static PyObject *__pyx_tuple__20;
-static PyObject *__pyx_tuple__21;
+static PyObject *__pyx_tuple__19;
 static PyObject *__pyx_codeobj__2;
 static PyObject *__pyx_codeobj__4;
 static PyObject *__pyx_codeobj__7;
@@ -1457,8 +1446,7 @@ static PyObject *__pyx_codeobj__11;
 static PyObject *__pyx_codeobj__13;
 static PyObject *__pyx_codeobj__15;
 static PyObject *__pyx_codeobj__17;
-static PyObject *__pyx_codeobj__19;
-static PyObject *__pyx_codeobj__22;
+static PyObject *__pyx_codeobj__20;
 /* Late includes */
 
 /* "node.py":15
@@ -1774,7 +1762,7 @@ static PyObject *__pyx_pf_4node_9ELLS_node___init__(CYTHON_UNUSED PyObject *__py
  * 
  *         self.children = defaultdict(ELLS_node)  # The collection of child nodes.             # <<<<<<<<<<<<<<
  *         self.isExpanded = False  # The boolean statement to check is the node has been expanded
- *         self.min_reward = float('inf')  # The lowest reward for all simulations on the node.
+ *         self.reward = 0  # The cumulative reward for all simulations on the node.
  */
   __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_defaultdict); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 46, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
@@ -1803,40 +1791,28 @@ static PyObject *__pyx_pf_4node_9ELLS_node___init__(CYTHON_UNUSED PyObject *__py
  * 
  *         self.children = defaultdict(ELLS_node)  # The collection of child nodes.
  *         self.isExpanded = False  # The boolean statement to check is the node has been expanded             # <<<<<<<<<<<<<<
- *         self.min_reward = float('inf')  # The lowest reward for all simulations on the node.
  *         self.reward = 0  # The cumulative reward for all simulations on the node.
+ *         self.visits = 0  # The number of visits on the node.
  */
   if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_isExpanded, Py_False) < 0) __PYX_ERR(0, 47, __pyx_L1_error)
 
   /* "node.py":48
  *         self.children = defaultdict(ELLS_node)  # The collection of child nodes.
  *         self.isExpanded = False  # The boolean statement to check is the node has been expanded
- *         self.min_reward = float('inf')  # The lowest reward for all simulations on the node.             # <<<<<<<<<<<<<<
- *         self.reward = 0  # The cumulative reward for all simulations on the node.
- *         self.visits = 0  # The number of visits on the node.
- */
-  __pyx_t_1 = __Pyx_PyNumber_Float(__pyx_n_s_inf); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 48, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_min_reward, __pyx_t_1) < 0) __PYX_ERR(0, 48, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-
-  /* "node.py":49
- *         self.isExpanded = False  # The boolean statement to check is the node has been expanded
- *         self.min_reward = float('inf')  # The lowest reward for all simulations on the node.
  *         self.reward = 0  # The cumulative reward for all simulations on the node.             # <<<<<<<<<<<<<<
  *         self.visits = 0  # The number of visits on the node.
  * 
  */
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_reward, __pyx_int_0) < 0) __PYX_ERR(0, 49, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_reward, __pyx_int_0) < 0) __PYX_ERR(0, 48, __pyx_L1_error)
 
-  /* "node.py":50
- *         self.min_reward = float('inf')  # The lowest reward for all simulations on the node.
+  /* "node.py":49
+ *         self.isExpanded = False  # The boolean statement to check is the node has been expanded
  *         self.reward = 0  # The cumulative reward for all simulations on the node.
  *         self.visits = 0  # The number of visits on the node.             # <<<<<<<<<<<<<<
  * 
  *     def _print_attribute(self):
  */
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_visits, __pyx_int_0) < 0) __PYX_ERR(0, 50, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_visits, __pyx_int_0) < 0) __PYX_ERR(0, 49, __pyx_L1_error)
 
   /* "node.py":30
  *     """
@@ -1862,7 +1838,7 @@ static PyObject *__pyx_pf_4node_9ELLS_node___init__(CYTHON_UNUSED PyObject *__py
   return __pyx_r;
 }
 
-/* "node.py":52
+/* "node.py":51
  *         self.visits = 0  # The number of visits on the node.
  * 
  *     def _print_attribute(self):             # <<<<<<<<<<<<<<
@@ -1894,19 +1870,19 @@ static PyObject *__pyx_pf_4node_9ELLS_node_2_print_attribute(CYTHON_UNUSED PyObj
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_print_attribute", 0);
 
-  /* "node.py":57
+  /* "node.py":56
  *             :return: None
  *         """
  *         print(vars(self))             # <<<<<<<<<<<<<<
  * 
  *     def compute_uct(self):
  */
-  __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_builtin_vars, __pyx_v_self); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 57, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_builtin_vars, __pyx_v_self); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 56, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (__Pyx_PrintOne(0, __pyx_t_1) < 0) __PYX_ERR(0, 57, __pyx_L1_error)
+  if (__Pyx_PrintOne(0, __pyx_t_1) < 0) __PYX_ERR(0, 56, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "node.py":52
+  /* "node.py":51
  *         self.visits = 0  # The number of visits on the node.
  * 
  *     def _print_attribute(self):             # <<<<<<<<<<<<<<
@@ -1927,17 +1903,17 @@ static PyObject *__pyx_pf_4node_9ELLS_node_2_print_attribute(CYTHON_UNUSED PyObj
   return __pyx_r;
 }
 
-/* "node.py":59
+/* "node.py":58
  *         print(vars(self))
  * 
  *     def compute_uct(self):             # <<<<<<<<<<<<<<
  *         """
- *             The function to calculate UCT value of the node.
+ *             The function to calculate the UCT value of the node.
  */
 
 /* Python wrapper */
 static PyObject *__pyx_pw_4node_9ELLS_node_5compute_uct(PyObject *__pyx_self, PyObject *__pyx_v_self); /*proto*/
-static char __pyx_doc_4node_9ELLS_node_4compute_uct[] = "\n            The function to calculate UCT value of the node.\n            :return: UCT(float): if the number of visits on the node is non-zero, we calculate the UCT\n            of selected node by UCB1 formula:  -reward/visits + c * sqrt(log(parent visits) / visits)\n        ";
+static char __pyx_doc_4node_9ELLS_node_4compute_uct[] = "\n            The function to calculate the UCT value of the node.\n            :return: UCT(float): if the number of visits on the node is non-zero, we calculate the UCT\n            of selected node by UCB1 formula:  -reward/visits + c * sqrt(log(parent visits) / visits)\n        ";
 static PyMethodDef __pyx_mdef_4node_9ELLS_node_5compute_uct = {"compute_uct", (PyCFunction)__pyx_pw_4node_9ELLS_node_5compute_uct, METH_O, __pyx_doc_4node_9ELLS_node_4compute_uct};
 static PyObject *__pyx_pw_4node_9ELLS_node_5compute_uct(PyObject *__pyx_self, PyObject *__pyx_v_self) {
   PyObject *__pyx_r = 0;
@@ -1967,38 +1943,38 @@ static PyObject *__pyx_pf_4node_9ELLS_node_4compute_uct(CYTHON_UNUSED PyObject *
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("compute_uct", 0);
 
-  /* "node.py":65
+  /* "node.py":64
  *             of selected node by UCB1 formula:  -reward/visits + c * sqrt(log(parent visits) / visits)
  *         """
  *         parent_visits = self.parent.visits             # <<<<<<<<<<<<<<
  *         if self.visits != 0:
  *             return - self.reward / self.visits + self.C * math.sqrt(math.log(parent_visits) / self.visits)
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_parent); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 65, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_parent); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 64, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_visits); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 65, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_visits); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 64, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_parent_visits = __pyx_t_2;
   __pyx_t_2 = 0;
 
-  /* "node.py":66
+  /* "node.py":65
  *         """
  *         parent_visits = self.parent.visits
  *         if self.visits != 0:             # <<<<<<<<<<<<<<
  *             return - self.reward / self.visits + self.C * math.sqrt(math.log(parent_visits) / self.visits)
  *         else:
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_visits); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 66, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_visits); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 65, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = __Pyx_PyInt_NeObjC(__pyx_t_2, __pyx_int_0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 66, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_NeObjC(__pyx_t_2, __pyx_int_0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 65, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 66, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 65, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   if (__pyx_t_3) {
 
-    /* "node.py":67
+    /* "node.py":66
  *         parent_visits = self.parent.visits
  *         if self.visits != 0:
  *             return - self.reward / self.visits + self.C * math.sqrt(math.log(parent_visits) / self.visits)             # <<<<<<<<<<<<<<
@@ -2006,27 +1982,27 @@ static PyObject *__pyx_pf_4node_9ELLS_node_4compute_uct(CYTHON_UNUSED PyObject *
  *             return float('inf')
  */
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_reward); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 67, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_reward); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 66, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_2 = PyNumber_Negative(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 67, __pyx_L1_error)
+    __pyx_t_2 = PyNumber_Negative(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 66, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_visits); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 67, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_visits); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 66, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_4 = __Pyx_PyNumber_Divide(__pyx_t_2, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 67, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyNumber_Divide(__pyx_t_2, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 66, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_C); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 67, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_C); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 66, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_math); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 67, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_math); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 66, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_sqrt); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 67, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_sqrt); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 66, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_n_s_math); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 67, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_n_s_math); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 66, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
-    __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_log); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 67, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_log); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 66, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     __pyx_t_7 = NULL;
@@ -2041,12 +2017,12 @@ static PyObject *__pyx_pf_4node_9ELLS_node_4compute_uct(CYTHON_UNUSED PyObject *
     }
     __pyx_t_5 = (__pyx_t_7) ? __Pyx_PyObject_Call2Args(__pyx_t_8, __pyx_t_7, __pyx_v_parent_visits) : __Pyx_PyObject_CallOneArg(__pyx_t_8, __pyx_v_parent_visits);
     __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
-    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 67, __pyx_L1_error)
+    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 66, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-    __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_visits); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 67, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_visits); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 66, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
-    __pyx_t_7 = __Pyx_PyNumber_Divide(__pyx_t_5, __pyx_t_8); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 67, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyNumber_Divide(__pyx_t_5, __pyx_t_8); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 66, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
@@ -2063,14 +2039,14 @@ static PyObject *__pyx_pf_4node_9ELLS_node_4compute_uct(CYTHON_UNUSED PyObject *
     __pyx_t_2 = (__pyx_t_8) ? __Pyx_PyObject_Call2Args(__pyx_t_6, __pyx_t_8, __pyx_t_7) : __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_t_7);
     __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 67, __pyx_L1_error)
+    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 66, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __pyx_t_6 = PyNumber_Multiply(__pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 67, __pyx_L1_error)
+    __pyx_t_6 = PyNumber_Multiply(__pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 66, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_2 = PyNumber_Add(__pyx_t_4, __pyx_t_6); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 67, __pyx_L1_error)
+    __pyx_t_2 = PyNumber_Add(__pyx_t_4, __pyx_t_6); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 66, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
@@ -2078,7 +2054,7 @@ static PyObject *__pyx_pf_4node_9ELLS_node_4compute_uct(CYTHON_UNUSED PyObject *
     __pyx_t_2 = 0;
     goto __pyx_L0;
 
-    /* "node.py":66
+    /* "node.py":65
  *         """
  *         parent_visits = self.parent.visits
  *         if self.visits != 0:             # <<<<<<<<<<<<<<
@@ -2087,28 +2063,28 @@ static PyObject *__pyx_pf_4node_9ELLS_node_4compute_uct(CYTHON_UNUSED PyObject *
  */
   }
 
-  /* "node.py":69
+  /* "node.py":68
  *             return - self.reward / self.visits + self.C * math.sqrt(math.log(parent_visits) / self.visits)
  *         else:
  *             return float('inf')             # <<<<<<<<<<<<<<
  * 
- *     def _is_fully_expanded(self):
+ *     def select_leaf(self):
  */
   /*else*/ {
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_2 = __Pyx_PyNumber_Float(__pyx_n_s_inf); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 69, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyNumber_Float(__pyx_n_s_inf); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 68, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __pyx_r = __pyx_t_2;
     __pyx_t_2 = 0;
     goto __pyx_L0;
   }
 
-  /* "node.py":59
+  /* "node.py":58
  *         print(vars(self))
  * 
  *     def compute_uct(self):             # <<<<<<<<<<<<<<
  *         """
- *             The function to calculate UCT value of the node.
+ *             The function to calculate the UCT value of the node.
  */
 
   /* function exit code */
@@ -2129,203 +2105,30 @@ static PyObject *__pyx_pf_4node_9ELLS_node_4compute_uct(CYTHON_UNUSED PyObject *
   return __pyx_r;
 }
 
-/* "node.py":71
+/* "node.py":70
  *             return float('inf')
- * 
- *     def _is_fully_expanded(self):             # <<<<<<<<<<<<<<
- *         for child in self.children.values():
- *             if child.visits == 0: return False
- */
-
-/* Python wrapper */
-static PyObject *__pyx_pw_4node_9ELLS_node_7_is_fully_expanded(PyObject *__pyx_self, PyObject *__pyx_v_self); /*proto*/
-static PyMethodDef __pyx_mdef_4node_9ELLS_node_7_is_fully_expanded = {"_is_fully_expanded", (PyCFunction)__pyx_pw_4node_9ELLS_node_7_is_fully_expanded, METH_O, 0};
-static PyObject *__pyx_pw_4node_9ELLS_node_7_is_fully_expanded(PyObject *__pyx_self, PyObject *__pyx_v_self) {
-  PyObject *__pyx_r = 0;
-  __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("_is_fully_expanded (wrapper)", 0);
-  __pyx_r = __pyx_pf_4node_9ELLS_node_6_is_fully_expanded(__pyx_self, ((PyObject *)__pyx_v_self));
-
-  /* function exit code */
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-static PyObject *__pyx_pf_4node_9ELLS_node_6_is_fully_expanded(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self) {
-  PyObject *__pyx_v_child = NULL;
-  PyObject *__pyx_r = NULL;
-  __Pyx_RefNannyDeclarations
-  PyObject *__pyx_t_1 = NULL;
-  PyObject *__pyx_t_2 = NULL;
-  PyObject *__pyx_t_3 = NULL;
-  Py_ssize_t __pyx_t_4;
-  PyObject *(*__pyx_t_5)(PyObject *);
-  int __pyx_t_6;
-  int __pyx_lineno = 0;
-  const char *__pyx_filename = NULL;
-  int __pyx_clineno = 0;
-  __Pyx_RefNannySetupContext("_is_fully_expanded", 0);
-
-  /* "node.py":72
- * 
- *     def _is_fully_expanded(self):
- *         for child in self.children.values():             # <<<<<<<<<<<<<<
- *             if child.visits == 0: return False
- *         return True
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_children); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 72, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_values); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 72, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = NULL;
-  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
-    __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_3);
-    if (likely(__pyx_t_2)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
-      __Pyx_INCREF(__pyx_t_2);
-      __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_3, function);
-    }
-  }
-  __pyx_t_1 = (__pyx_t_2) ? __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_2) : __Pyx_PyObject_CallNoArg(__pyx_t_3);
-  __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 72, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (likely(PyList_CheckExact(__pyx_t_1)) || PyTuple_CheckExact(__pyx_t_1)) {
-    __pyx_t_3 = __pyx_t_1; __Pyx_INCREF(__pyx_t_3); __pyx_t_4 = 0;
-    __pyx_t_5 = NULL;
-  } else {
-    __pyx_t_4 = -1; __pyx_t_3 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 72, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_5 = Py_TYPE(__pyx_t_3)->tp_iternext; if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 72, __pyx_L1_error)
-  }
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  for (;;) {
-    if (likely(!__pyx_t_5)) {
-      if (likely(PyList_CheckExact(__pyx_t_3))) {
-        if (__pyx_t_4 >= PyList_GET_SIZE(__pyx_t_3)) break;
-        #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_1 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_4); __Pyx_INCREF(__pyx_t_1); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(0, 72, __pyx_L1_error)
-        #else
-        __pyx_t_1 = PySequence_ITEM(__pyx_t_3, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 72, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_1);
-        #endif
-      } else {
-        if (__pyx_t_4 >= PyTuple_GET_SIZE(__pyx_t_3)) break;
-        #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_3, __pyx_t_4); __Pyx_INCREF(__pyx_t_1); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(0, 72, __pyx_L1_error)
-        #else
-        __pyx_t_1 = PySequence_ITEM(__pyx_t_3, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 72, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_1);
-        #endif
-      }
-    } else {
-      __pyx_t_1 = __pyx_t_5(__pyx_t_3);
-      if (unlikely(!__pyx_t_1)) {
-        PyObject* exc_type = PyErr_Occurred();
-        if (exc_type) {
-          if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-          else __PYX_ERR(0, 72, __pyx_L1_error)
-        }
-        break;
-      }
-      __Pyx_GOTREF(__pyx_t_1);
-    }
-    __Pyx_XDECREF_SET(__pyx_v_child, __pyx_t_1);
-    __pyx_t_1 = 0;
-
-    /* "node.py":73
- *     def _is_fully_expanded(self):
- *         for child in self.children.values():
- *             if child.visits == 0: return False             # <<<<<<<<<<<<<<
- *         return True
- * 
- */
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_child, __pyx_n_s_visits); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 73, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_2 = __Pyx_PyInt_EqObjC(__pyx_t_1, __pyx_int_0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 73, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_6 < 0)) __PYX_ERR(0, 73, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (__pyx_t_6) {
-      __Pyx_XDECREF(__pyx_r);
-      __Pyx_INCREF(Py_False);
-      __pyx_r = Py_False;
-      __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      goto __pyx_L0;
-    }
-
-    /* "node.py":72
- * 
- *     def _is_fully_expanded(self):
- *         for child in self.children.values():             # <<<<<<<<<<<<<<
- *             if child.visits == 0: return False
- *         return True
- */
-  }
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-
-  /* "node.py":74
- *         for child in self.children.values():
- *             if child.visits == 0: return False
- *         return True             # <<<<<<<<<<<<<<
- * 
- *     def select_leaf(self):
- */
-  __Pyx_XDECREF(__pyx_r);
-  __Pyx_INCREF(Py_True);
-  __pyx_r = Py_True;
-  goto __pyx_L0;
-
-  /* "node.py":71
- *             return float('inf')
- * 
- *     def _is_fully_expanded(self):             # <<<<<<<<<<<<<<
- *         for child in self.children.values():
- *             if child.visits == 0: return False
- */
-
-  /* function exit code */
-  __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_XDECREF(__pyx_t_2);
-  __Pyx_XDECREF(__pyx_t_3);
-  __Pyx_AddTraceback("node.ELLS_node._is_fully_expanded", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = NULL;
-  __pyx_L0:;
-  __Pyx_XDECREF(__pyx_v_child);
-  __Pyx_XGIVEREF(__pyx_r);
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-/* "node.py":76
- *         return True
  * 
  *     def select_leaf(self):             # <<<<<<<<<<<<<<
  *         """
- *             The function to recursively select the current most promising node (maximizes UCT) until reaches
+ *             The function to recursively select the current most promising node (maximizes UCT) until it reaches
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4node_9ELLS_node_9select_leaf(PyObject *__pyx_self, PyObject *__pyx_v_self); /*proto*/
-static char __pyx_doc_4node_9ELLS_node_8select_leaf[] = "\n            The function to recursively select the current most promising node (maximizes UCT) until reaches\n            the leaf node.\n            :return: current(ELLS_node) The current best leaf node. Such node will also be used in further\n                     expansion and simulation step.\n            :return: selected_nodes_R(float) The sum of promising nodes' rewards. Eg: we choose the best\n                     node follow the order of A -> B -> C, then selected_nodes_R = reward(A) + reward(B)\n                     + reward(C)\n        ";
-static PyMethodDef __pyx_mdef_4node_9ELLS_node_9select_leaf = {"select_leaf", (PyCFunction)__pyx_pw_4node_9ELLS_node_9select_leaf, METH_O, __pyx_doc_4node_9ELLS_node_8select_leaf};
-static PyObject *__pyx_pw_4node_9ELLS_node_9select_leaf(PyObject *__pyx_self, PyObject *__pyx_v_self) {
+static PyObject *__pyx_pw_4node_9ELLS_node_7select_leaf(PyObject *__pyx_self, PyObject *__pyx_v_self); /*proto*/
+static char __pyx_doc_4node_9ELLS_node_6select_leaf[] = "\n            The function to recursively select the current most promising node (maximizes UCT) until it reaches\n            the leaf node.\n            :return: current(ELLS_node) The current best leaf node. Such node will also be used in further\n                     expansion and simulation step.\n            :return: selected_nodes_R(float) The sum of promising nodes' rewards. Eg: we choose the best\n                     node follow the order of A -> B -> C, then selected_nodes_R = reward(A) + reward(B)\n                     + reward(C)\n        ";
+static PyMethodDef __pyx_mdef_4node_9ELLS_node_7select_leaf = {"select_leaf", (PyCFunction)__pyx_pw_4node_9ELLS_node_7select_leaf, METH_O, __pyx_doc_4node_9ELLS_node_6select_leaf};
+static PyObject *__pyx_pw_4node_9ELLS_node_7select_leaf(PyObject *__pyx_self, PyObject *__pyx_v_self) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("select_leaf (wrapper)", 0);
-  __pyx_r = __pyx_pf_4node_9ELLS_node_8select_leaf(__pyx_self, ((PyObject *)__pyx_v_self));
+  __pyx_r = __pyx_pf_4node_9ELLS_node_6select_leaf(__pyx_self, ((PyObject *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4node_9ELLS_node_8select_leaf(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self) {
+static PyObject *__pyx_pf_4node_9ELLS_node_6select_leaf(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self) {
   PyObject *__pyx_v_current = NULL;
   PyObject *__pyx_v_best_child = NULL;
   PyObject *__pyx_v_selected_nodes_R = NULL;
@@ -2347,7 +2150,7 @@ static PyObject *__pyx_pf_4node_9ELLS_node_8select_leaf(CYTHON_UNUSED PyObject *
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("select_leaf", 0);
 
-  /* "node.py":86
+  /* "node.py":80
  *                      + reward(C)
  *         """
  *         current = self             # <<<<<<<<<<<<<<
@@ -2357,7 +2160,7 @@ static PyObject *__pyx_pf_4node_9ELLS_node_8select_leaf(CYTHON_UNUSED PyObject *
   __Pyx_INCREF(__pyx_v_self);
   __pyx_v_current = __pyx_v_self;
 
-  /* "node.py":87
+  /* "node.py":81
  *         """
  *         current = self
  *         best_child = None             # <<<<<<<<<<<<<<
@@ -2367,7 +2170,7 @@ static PyObject *__pyx_pf_4node_9ELLS_node_8select_leaf(CYTHON_UNUSED PyObject *
   __Pyx_INCREF(Py_None);
   __pyx_v_best_child = Py_None;
 
-  /* "node.py":88
+  /* "node.py":82
  *         current = self
  *         best_child = None
  *         selected_nodes_R = 0             # <<<<<<<<<<<<<<
@@ -2377,7 +2180,7 @@ static PyObject *__pyx_pf_4node_9ELLS_node_8select_leaf(CYTHON_UNUSED PyObject *
   __Pyx_INCREF(__pyx_int_0);
   __pyx_v_selected_nodes_R = __pyx_int_0;
 
-  /* "node.py":89
+  /* "node.py":83
  *         best_child = None
  *         selected_nodes_R = 0
  *         while current.isExpanded:             # <<<<<<<<<<<<<<
@@ -2385,35 +2188,35 @@ static PyObject *__pyx_pf_4node_9ELLS_node_8select_leaf(CYTHON_UNUSED PyObject *
  *             for child in current.children.values():
  */
   while (1) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_current, __pyx_n_s_isExpanded); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 89, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_current, __pyx_n_s_isExpanded); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 83, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 89, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 83, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     if (!__pyx_t_2) break;
 
-    /* "node.py":90
+    /* "node.py":84
  *         selected_nodes_R = 0
  *         while current.isExpanded:
  *             maxUCT = - float('inf')             # <<<<<<<<<<<<<<
  *             for child in current.children.values():
  *                 UCT = child.compute_uct()
  */
-    __pyx_t_3 = __Pyx_PyObject_AsDouble(__pyx_n_s_inf); if (unlikely(__pyx_t_3 == ((double)((double)-1)) && PyErr_Occurred())) __PYX_ERR(0, 90, __pyx_L1_error)
-    __pyx_t_1 = PyFloat_FromDouble((-__pyx_t_3)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 90, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_AsDouble(__pyx_n_s_inf); if (unlikely(__pyx_t_3 == ((double)((double)-1)) && PyErr_Occurred())) __PYX_ERR(0, 84, __pyx_L1_error)
+    __pyx_t_1 = PyFloat_FromDouble((-__pyx_t_3)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 84, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_XDECREF_SET(__pyx_v_maxUCT, __pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "node.py":91
+    /* "node.py":85
  *         while current.isExpanded:
  *             maxUCT = - float('inf')
  *             for child in current.children.values():             # <<<<<<<<<<<<<<
  *                 UCT = child.compute_uct()
  *                 if UCT > maxUCT:
  */
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_current, __pyx_n_s_children); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 91, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_current, __pyx_n_s_children); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 85, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_values); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 91, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_values); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 85, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __pyx_t_4 = NULL;
@@ -2428,16 +2231,16 @@ static PyObject *__pyx_pf_4node_9ELLS_node_8select_leaf(CYTHON_UNUSED PyObject *
     }
     __pyx_t_1 = (__pyx_t_4) ? __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_4) : __Pyx_PyObject_CallNoArg(__pyx_t_5);
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 91, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 85, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     if (likely(PyList_CheckExact(__pyx_t_1)) || PyTuple_CheckExact(__pyx_t_1)) {
       __pyx_t_5 = __pyx_t_1; __Pyx_INCREF(__pyx_t_5); __pyx_t_6 = 0;
       __pyx_t_7 = NULL;
     } else {
-      __pyx_t_6 = -1; __pyx_t_5 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 91, __pyx_L1_error)
+      __pyx_t_6 = -1; __pyx_t_5 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 85, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
-      __pyx_t_7 = Py_TYPE(__pyx_t_5)->tp_iternext; if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 91, __pyx_L1_error)
+      __pyx_t_7 = Py_TYPE(__pyx_t_5)->tp_iternext; if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 85, __pyx_L1_error)
     }
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     for (;;) {
@@ -2445,17 +2248,17 @@ static PyObject *__pyx_pf_4node_9ELLS_node_8select_leaf(CYTHON_UNUSED PyObject *
         if (likely(PyList_CheckExact(__pyx_t_5))) {
           if (__pyx_t_6 >= PyList_GET_SIZE(__pyx_t_5)) break;
           #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-          __pyx_t_1 = PyList_GET_ITEM(__pyx_t_5, __pyx_t_6); __Pyx_INCREF(__pyx_t_1); __pyx_t_6++; if (unlikely(0 < 0)) __PYX_ERR(0, 91, __pyx_L1_error)
+          __pyx_t_1 = PyList_GET_ITEM(__pyx_t_5, __pyx_t_6); __Pyx_INCREF(__pyx_t_1); __pyx_t_6++; if (unlikely(0 < 0)) __PYX_ERR(0, 85, __pyx_L1_error)
           #else
-          __pyx_t_1 = PySequence_ITEM(__pyx_t_5, __pyx_t_6); __pyx_t_6++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 91, __pyx_L1_error)
+          __pyx_t_1 = PySequence_ITEM(__pyx_t_5, __pyx_t_6); __pyx_t_6++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 85, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_1);
           #endif
         } else {
           if (__pyx_t_6 >= PyTuple_GET_SIZE(__pyx_t_5)) break;
           #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-          __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_5, __pyx_t_6); __Pyx_INCREF(__pyx_t_1); __pyx_t_6++; if (unlikely(0 < 0)) __PYX_ERR(0, 91, __pyx_L1_error)
+          __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_5, __pyx_t_6); __Pyx_INCREF(__pyx_t_1); __pyx_t_6++; if (unlikely(0 < 0)) __PYX_ERR(0, 85, __pyx_L1_error)
           #else
-          __pyx_t_1 = PySequence_ITEM(__pyx_t_5, __pyx_t_6); __pyx_t_6++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 91, __pyx_L1_error)
+          __pyx_t_1 = PySequence_ITEM(__pyx_t_5, __pyx_t_6); __pyx_t_6++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 85, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_1);
           #endif
         }
@@ -2465,7 +2268,7 @@ static PyObject *__pyx_pf_4node_9ELLS_node_8select_leaf(CYTHON_UNUSED PyObject *
           PyObject* exc_type = PyErr_Occurred();
           if (exc_type) {
             if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-            else __PYX_ERR(0, 91, __pyx_L1_error)
+            else __PYX_ERR(0, 85, __pyx_L1_error)
           }
           break;
         }
@@ -2474,14 +2277,14 @@ static PyObject *__pyx_pf_4node_9ELLS_node_8select_leaf(CYTHON_UNUSED PyObject *
       __Pyx_XDECREF_SET(__pyx_v_child, __pyx_t_1);
       __pyx_t_1 = 0;
 
-      /* "node.py":92
+      /* "node.py":86
  *             maxUCT = - float('inf')
  *             for child in current.children.values():
  *                 UCT = child.compute_uct()             # <<<<<<<<<<<<<<
  *                 if UCT > maxUCT:
  *                     maxUCT = UCT
  */
-      __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_child, __pyx_n_s_compute_uct); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 92, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_child, __pyx_n_s_compute_uct); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 86, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __pyx_t_8 = NULL;
       if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_4))) {
@@ -2495,25 +2298,25 @@ static PyObject *__pyx_pf_4node_9ELLS_node_8select_leaf(CYTHON_UNUSED PyObject *
       }
       __pyx_t_1 = (__pyx_t_8) ? __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_8) : __Pyx_PyObject_CallNoArg(__pyx_t_4);
       __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
-      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 92, __pyx_L1_error)
+      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 86, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_XDECREF_SET(__pyx_v_UCT, __pyx_t_1);
       __pyx_t_1 = 0;
 
-      /* "node.py":93
+      /* "node.py":87
  *             for child in current.children.values():
  *                 UCT = child.compute_uct()
  *                 if UCT > maxUCT:             # <<<<<<<<<<<<<<
  *                     maxUCT = UCT
  *                     best_child = child
  */
-      __pyx_t_1 = PyObject_RichCompare(__pyx_v_UCT, __pyx_v_maxUCT, Py_GT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 93, __pyx_L1_error)
-      __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 93, __pyx_L1_error)
+      __pyx_t_1 = PyObject_RichCompare(__pyx_v_UCT, __pyx_v_maxUCT, Py_GT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 87, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 87, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       if (__pyx_t_2) {
 
-        /* "node.py":94
+        /* "node.py":88
  *                 UCT = child.compute_uct()
  *                 if UCT > maxUCT:
  *                     maxUCT = UCT             # <<<<<<<<<<<<<<
@@ -2523,7 +2326,7 @@ static PyObject *__pyx_pf_4node_9ELLS_node_8select_leaf(CYTHON_UNUSED PyObject *
         __Pyx_INCREF(__pyx_v_UCT);
         __Pyx_DECREF_SET(__pyx_v_maxUCT, __pyx_v_UCT);
 
-        /* "node.py":95
+        /* "node.py":89
  *                 if UCT > maxUCT:
  *                     maxUCT = UCT
  *                     best_child = child             # <<<<<<<<<<<<<<
@@ -2533,7 +2336,7 @@ static PyObject *__pyx_pf_4node_9ELLS_node_8select_leaf(CYTHON_UNUSED PyObject *
         __Pyx_INCREF(__pyx_v_child);
         __Pyx_DECREF_SET(__pyx_v_best_child, __pyx_v_child);
 
-        /* "node.py":93
+        /* "node.py":87
  *             for child in current.children.values():
  *                 UCT = child.compute_uct()
  *                 if UCT > maxUCT:             # <<<<<<<<<<<<<<
@@ -2542,7 +2345,7 @@ static PyObject *__pyx_pf_4node_9ELLS_node_8select_leaf(CYTHON_UNUSED PyObject *
  */
       }
 
-      /* "node.py":91
+      /* "node.py":85
  *         while current.isExpanded:
  *             maxUCT = - float('inf')
  *             for child in current.children.values():             # <<<<<<<<<<<<<<
@@ -2552,7 +2355,7 @@ static PyObject *__pyx_pf_4node_9ELLS_node_8select_leaf(CYTHON_UNUSED PyObject *
     }
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-    /* "node.py":97
+    /* "node.py":91
  *                     best_child = child
  * 
  *             current = best_child             # <<<<<<<<<<<<<<
@@ -2562,31 +2365,31 @@ static PyObject *__pyx_pf_4node_9ELLS_node_8select_leaf(CYTHON_UNUSED PyObject *
     __Pyx_INCREF(__pyx_v_best_child);
     __Pyx_DECREF_SET(__pyx_v_current, __pyx_v_best_child);
 
-    /* "node.py":98
+    /* "node.py":92
  * 
  *             current = best_child
  *             selected_nodes_R += current.score             # <<<<<<<<<<<<<<
  *         return current, selected_nodes_R
  * 
  */
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_current, __pyx_n_s_score); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 98, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_current, __pyx_n_s_score); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 92, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_1 = PyNumber_InPlaceAdd(__pyx_v_selected_nodes_R, __pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 98, __pyx_L1_error)
+    __pyx_t_1 = PyNumber_InPlaceAdd(__pyx_v_selected_nodes_R, __pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 92, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF_SET(__pyx_v_selected_nodes_R, __pyx_t_1);
     __pyx_t_1 = 0;
   }
 
-  /* "node.py":99
+  /* "node.py":93
  *             current = best_child
  *             selected_nodes_R += current.score
  *         return current, selected_nodes_R             # <<<<<<<<<<<<<<
  * 
- *     def backpropogation(self, simulation_reward):
+ *     def backpropagation(self, simulation_reward):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 99, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 93, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(__pyx_v_current);
   __Pyx_GIVEREF(__pyx_v_current);
@@ -2598,12 +2401,12 @@ static PyObject *__pyx_pf_4node_9ELLS_node_8select_leaf(CYTHON_UNUSED PyObject *
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "node.py":76
- *         return True
+  /* "node.py":70
+ *             return float('inf')
  * 
  *     def select_leaf(self):             # <<<<<<<<<<<<<<
  *         """
- *             The function to recursively select the current most promising node (maximizes UCT) until reaches
+ *             The function to recursively select the current most promising node (maximizes UCT) until it reaches
  */
 
   /* function exit code */
@@ -2626,19 +2429,19 @@ static PyObject *__pyx_pf_4node_9ELLS_node_8select_leaf(CYTHON_UNUSED PyObject *
   return __pyx_r;
 }
 
-/* "node.py":101
+/* "node.py":95
  *         return current, selected_nodes_R
  * 
- *     def backpropogation(self, simulation_reward):             # <<<<<<<<<<<<<<
+ *     def backpropagation(self, simulation_reward):             # <<<<<<<<<<<<<<
  *         """
  *             The function to update the current 'move'(delete) sequence with the simulation result.
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4node_9ELLS_node_11backpropogation(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_4node_9ELLS_node_10backpropogation[] = "\n            The function to update the current 'move'(delete) sequence with the simulation result.\n            :param simulation_reward:(int) The total R-score of the simulation.\n            :return: None\n        ";
-static PyMethodDef __pyx_mdef_4node_9ELLS_node_11backpropogation = {"backpropogation", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_4node_9ELLS_node_11backpropogation, METH_VARARGS|METH_KEYWORDS, __pyx_doc_4node_9ELLS_node_10backpropogation};
-static PyObject *__pyx_pw_4node_9ELLS_node_11backpropogation(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_4node_9ELLS_node_9backpropagation(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static char __pyx_doc_4node_9ELLS_node_8backpropagation[] = "\n            The function to update the current 'move'(delete) sequence with the simulation result.\n            :param simulation_reward:(int) The total R-score of the simulation.\n            :return: None\n        ";
+static PyMethodDef __pyx_mdef_4node_9ELLS_node_9backpropagation = {"backpropagation", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_4node_9ELLS_node_9backpropagation, METH_VARARGS|METH_KEYWORDS, __pyx_doc_4node_9ELLS_node_8backpropagation};
+static PyObject *__pyx_pw_4node_9ELLS_node_9backpropagation(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_self = 0;
   PyObject *__pyx_v_simulation_reward = 0;
   int __pyx_lineno = 0;
@@ -2646,7 +2449,7 @@ static PyObject *__pyx_pw_4node_9ELLS_node_11backpropogation(PyObject *__pyx_sel
   int __pyx_clineno = 0;
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("backpropogation (wrapper)", 0);
+  __Pyx_RefNannySetupContext("backpropagation (wrapper)", 0);
   {
     static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_self,&__pyx_n_s_simulation_reward,0};
     PyObject* values[2] = {0,0};
@@ -2670,11 +2473,11 @@ static PyObject *__pyx_pw_4node_9ELLS_node_11backpropogation(PyObject *__pyx_sel
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_simulation_reward)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("backpropogation", 1, 2, 2, 1); __PYX_ERR(0, 101, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("backpropagation", 1, 2, 2, 1); __PYX_ERR(0, 95, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "backpropogation") < 0)) __PYX_ERR(0, 101, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "backpropagation") < 0)) __PYX_ERR(0, 95, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -2687,20 +2490,20 @@ static PyObject *__pyx_pw_4node_9ELLS_node_11backpropogation(PyObject *__pyx_sel
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("backpropogation", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 101, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("backpropagation", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 95, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("node.ELLS_node.backpropogation", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("node.ELLS_node.backpropagation", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_4node_9ELLS_node_10backpropogation(__pyx_self, __pyx_v_self, __pyx_v_simulation_reward);
+  __pyx_r = __pyx_pf_4node_9ELLS_node_8backpropagation(__pyx_self, __pyx_v_self, __pyx_v_simulation_reward);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4node_9ELLS_node_10backpropogation(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_simulation_reward) {
+static PyObject *__pyx_pf_4node_9ELLS_node_8backpropagation(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_simulation_reward) {
   PyObject *__pyx_v_current = NULL;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -2711,9 +2514,9 @@ static PyObject *__pyx_pf_4node_9ELLS_node_10backpropogation(CYTHON_UNUSED PyObj
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
-  __Pyx_RefNannySetupContext("backpropogation", 0);
+  __Pyx_RefNannySetupContext("backpropagation", 0);
 
-  /* "node.py":107
+  /* "node.py":101
  *             :return: None
  *         """
  *         current = self             # <<<<<<<<<<<<<<
@@ -2723,7 +2526,7 @@ static PyObject *__pyx_pf_4node_9ELLS_node_10backpropogation(CYTHON_UNUSED PyObj
   __Pyx_INCREF(__pyx_v_self);
   __pyx_v_current = __pyx_v_self;
 
-  /* "node.py":108
+  /* "node.py":102
  *         """
  *         current = self
  *         while current.parent is not None:             # <<<<<<<<<<<<<<
@@ -2731,93 +2534,60 @@ static PyObject *__pyx_pf_4node_9ELLS_node_10backpropogation(CYTHON_UNUSED PyObj
  *             current.reward += simulation_reward
  */
   while (1) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_current, __pyx_n_s_parent); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 108, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_current, __pyx_n_s_parent); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 102, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __pyx_t_2 = (__pyx_t_1 != Py_None);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __pyx_t_3 = (__pyx_t_2 != 0);
     if (!__pyx_t_3) break;
 
-    /* "node.py":109
+    /* "node.py":103
  *         current = self
  *         while current.parent is not None:
  *             current.visits += 1             # <<<<<<<<<<<<<<
  *             current.reward += simulation_reward
- *             if simulation_reward < current.min_reward:
+ *             current = current.parent
  */
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_current, __pyx_n_s_visits); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 109, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_current, __pyx_n_s_visits); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 103, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_4 = __Pyx_PyInt_AddObjC(__pyx_t_1, __pyx_int_1, 1, 1, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 109, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyInt_AddObjC(__pyx_t_1, __pyx_int_1, 1, 1, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 103, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    if (__Pyx_PyObject_SetAttrStr(__pyx_v_current, __pyx_n_s_visits, __pyx_t_4) < 0) __PYX_ERR(0, 109, __pyx_L1_error)
+    if (__Pyx_PyObject_SetAttrStr(__pyx_v_current, __pyx_n_s_visits, __pyx_t_4) < 0) __PYX_ERR(0, 103, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-    /* "node.py":110
+    /* "node.py":104
  *         while current.parent is not None:
  *             current.visits += 1
  *             current.reward += simulation_reward             # <<<<<<<<<<<<<<
- *             if simulation_reward < current.min_reward:
- *                 current.min_reward = simulation_reward
- */
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_current, __pyx_n_s_reward); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 110, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_1 = PyNumber_InPlaceAdd(__pyx_t_4, __pyx_v_simulation_reward); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 110, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (__Pyx_PyObject_SetAttrStr(__pyx_v_current, __pyx_n_s_reward, __pyx_t_1) < 0) __PYX_ERR(0, 110, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-
-    /* "node.py":111
- *             current.visits += 1
- *             current.reward += simulation_reward
- *             if simulation_reward < current.min_reward:             # <<<<<<<<<<<<<<
- *                 current.min_reward = simulation_reward
- *             current = current.parent
- */
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_current, __pyx_n_s_min_reward); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 111, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_4 = PyObject_RichCompare(__pyx_v_simulation_reward, __pyx_t_1, Py_LT); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 111, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 111, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (__pyx_t_3) {
-
-      /* "node.py":112
- *             current.reward += simulation_reward
- *             if simulation_reward < current.min_reward:
- *                 current.min_reward = simulation_reward             # <<<<<<<<<<<<<<
  *             current = current.parent
  * 
  */
-      if (__Pyx_PyObject_SetAttrStr(__pyx_v_current, __pyx_n_s_min_reward, __pyx_v_simulation_reward) < 0) __PYX_ERR(0, 112, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_current, __pyx_n_s_reward); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 104, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_4);
+    __pyx_t_1 = PyNumber_InPlaceAdd(__pyx_t_4, __pyx_v_simulation_reward); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 104, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+    if (__Pyx_PyObject_SetAttrStr(__pyx_v_current, __pyx_n_s_reward, __pyx_t_1) < 0) __PYX_ERR(0, 104, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-      /* "node.py":111
+    /* "node.py":105
  *             current.visits += 1
  *             current.reward += simulation_reward
- *             if simulation_reward < current.min_reward:             # <<<<<<<<<<<<<<
- *                 current.min_reward = simulation_reward
- *             current = current.parent
- */
-    }
-
-    /* "node.py":113
- *             if simulation_reward < current.min_reward:
- *                 current.min_reward = simulation_reward
  *             current = current.parent             # <<<<<<<<<<<<<<
  * 
  *     def expand(self, legal_deletions, c):
  */
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_current, __pyx_n_s_parent); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 113, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_4);
-    __Pyx_DECREF_SET(__pyx_v_current, __pyx_t_4);
-    __pyx_t_4 = 0;
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_current, __pyx_n_s_parent); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 105, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __Pyx_DECREF_SET(__pyx_v_current, __pyx_t_1);
+    __pyx_t_1 = 0;
   }
 
-  /* "node.py":101
+  /* "node.py":95
  *         return current, selected_nodes_R
  * 
- *     def backpropogation(self, simulation_reward):             # <<<<<<<<<<<<<<
+ *     def backpropagation(self, simulation_reward):             # <<<<<<<<<<<<<<
  *         """
  *             The function to update the current 'move'(delete) sequence with the simulation result.
  */
@@ -2828,7 +2598,7 @@ static PyObject *__pyx_pf_4node_9ELLS_node_10backpropogation(CYTHON_UNUSED PyObj
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_4);
-  __Pyx_AddTraceback("node.ELLS_node.backpropogation", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("node.ELLS_node.backpropagation", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_current);
@@ -2837,7 +2607,7 @@ static PyObject *__pyx_pf_4node_9ELLS_node_10backpropogation(CYTHON_UNUSED PyObj
   return __pyx_r;
 }
 
-/* "node.py":115
+/* "node.py":107
  *             current = current.parent
  * 
  *     def expand(self, legal_deletions, c):             # <<<<<<<<<<<<<<
@@ -2846,10 +2616,10 @@ static PyObject *__pyx_pf_4node_9ELLS_node_10backpropogation(CYTHON_UNUSED PyObj
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4node_9ELLS_node_13expand(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_4node_9ELLS_node_12expand[] = "\n            The function to add all states reachable from the current most promising node to the tree.\n            :param legal_deletions: ([(int,int)]) The indices of all legal deleted symbols and their corresponding\n            R-scores.\n            :param c:(float) the exploration parameter of child node.\n            :return: None\n        ";
-static PyMethodDef __pyx_mdef_4node_9ELLS_node_13expand = {"expand", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_4node_9ELLS_node_13expand, METH_VARARGS|METH_KEYWORDS, __pyx_doc_4node_9ELLS_node_12expand};
-static PyObject *__pyx_pw_4node_9ELLS_node_13expand(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_4node_9ELLS_node_11expand(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static char __pyx_doc_4node_9ELLS_node_10expand[] = "\n            The function to add all states reachable from the current most promising node to the tree.\n            :param legal_deletions: ([(int,int)]) The indices of all legal deleted symbols and their corresponding\n            R-scores.\n            :param c:(float) the exploration parameter of child node.\n            :return: None\n        ";
+static PyMethodDef __pyx_mdef_4node_9ELLS_node_11expand = {"expand", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_4node_9ELLS_node_11expand, METH_VARARGS|METH_KEYWORDS, __pyx_doc_4node_9ELLS_node_10expand};
+static PyObject *__pyx_pw_4node_9ELLS_node_11expand(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_self = 0;
   PyObject *__pyx_v_legal_deletions = 0;
   PyObject *__pyx_v_c = 0;
@@ -2884,17 +2654,17 @@ static PyObject *__pyx_pw_4node_9ELLS_node_13expand(PyObject *__pyx_self, PyObje
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_legal_deletions)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("expand", 1, 3, 3, 1); __PYX_ERR(0, 115, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("expand", 1, 3, 3, 1); __PYX_ERR(0, 107, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
         if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_c)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("expand", 1, 3, 3, 2); __PYX_ERR(0, 115, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("expand", 1, 3, 3, 2); __PYX_ERR(0, 107, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "expand") < 0)) __PYX_ERR(0, 115, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "expand") < 0)) __PYX_ERR(0, 107, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
@@ -2909,20 +2679,20 @@ static PyObject *__pyx_pw_4node_9ELLS_node_13expand(PyObject *__pyx_self, PyObje
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("expand", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 115, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("expand", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 107, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("node.ELLS_node.expand", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_4node_9ELLS_node_12expand(__pyx_self, __pyx_v_self, __pyx_v_legal_deletions, __pyx_v_c);
+  __pyx_r = __pyx_pf_4node_9ELLS_node_10expand(__pyx_self, __pyx_v_self, __pyx_v_legal_deletions, __pyx_v_c);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4node_9ELLS_node_12expand(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_legal_deletions, PyObject *__pyx_v_c) {
+static PyObject *__pyx_pf_4node_9ELLS_node_10expand(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_legal_deletions, PyObject *__pyx_v_c) {
   PyObject *__pyx_v_legal = NULL;
   PyObject *__pyx_v_move = NULL;
   PyObject *__pyx_r = NULL;
@@ -2942,7 +2712,7 @@ static PyObject *__pyx_pf_4node_9ELLS_node_12expand(CYTHON_UNUSED PyObject *__py
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("expand", 0);
 
-  /* "node.py":123
+  /* "node.py":115
  *             :return: None
  *         """
  *         for legal in legal_deletions:             # <<<<<<<<<<<<<<
@@ -2953,26 +2723,26 @@ static PyObject *__pyx_pf_4node_9ELLS_node_12expand(CYTHON_UNUSED PyObject *__py
     __pyx_t_1 = __pyx_v_legal_deletions; __Pyx_INCREF(__pyx_t_1); __pyx_t_2 = 0;
     __pyx_t_3 = NULL;
   } else {
-    __pyx_t_2 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_v_legal_deletions); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 123, __pyx_L1_error)
+    __pyx_t_2 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_v_legal_deletions); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 115, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_3 = Py_TYPE(__pyx_t_1)->tp_iternext; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 123, __pyx_L1_error)
+    __pyx_t_3 = Py_TYPE(__pyx_t_1)->tp_iternext; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 115, __pyx_L1_error)
   }
   for (;;) {
     if (likely(!__pyx_t_3)) {
       if (likely(PyList_CheckExact(__pyx_t_1))) {
         if (__pyx_t_2 >= PyList_GET_SIZE(__pyx_t_1)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_4 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_2); __Pyx_INCREF(__pyx_t_4); __pyx_t_2++; if (unlikely(0 < 0)) __PYX_ERR(0, 123, __pyx_L1_error)
+        __pyx_t_4 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_2); __Pyx_INCREF(__pyx_t_4); __pyx_t_2++; if (unlikely(0 < 0)) __PYX_ERR(0, 115, __pyx_L1_error)
         #else
-        __pyx_t_4 = PySequence_ITEM(__pyx_t_1, __pyx_t_2); __pyx_t_2++; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 123, __pyx_L1_error)
+        __pyx_t_4 = PySequence_ITEM(__pyx_t_1, __pyx_t_2); __pyx_t_2++; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 115, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
         #endif
       } else {
         if (__pyx_t_2 >= PyTuple_GET_SIZE(__pyx_t_1)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_4 = PyTuple_GET_ITEM(__pyx_t_1, __pyx_t_2); __Pyx_INCREF(__pyx_t_4); __pyx_t_2++; if (unlikely(0 < 0)) __PYX_ERR(0, 123, __pyx_L1_error)
+        __pyx_t_4 = PyTuple_GET_ITEM(__pyx_t_1, __pyx_t_2); __Pyx_INCREF(__pyx_t_4); __pyx_t_2++; if (unlikely(0 < 0)) __PYX_ERR(0, 115, __pyx_L1_error)
         #else
-        __pyx_t_4 = PySequence_ITEM(__pyx_t_1, __pyx_t_2); __pyx_t_2++; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 123, __pyx_L1_error)
+        __pyx_t_4 = PySequence_ITEM(__pyx_t_1, __pyx_t_2); __pyx_t_2++; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 115, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
         #endif
       }
@@ -2982,7 +2752,7 @@ static PyObject *__pyx_pf_4node_9ELLS_node_12expand(CYTHON_UNUSED PyObject *__py
         PyObject* exc_type = PyErr_Occurred();
         if (exc_type) {
           if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-          else __PYX_ERR(0, 123, __pyx_L1_error)
+          else __PYX_ERR(0, 115, __pyx_L1_error)
         }
         break;
       }
@@ -2991,30 +2761,30 @@ static PyObject *__pyx_pf_4node_9ELLS_node_12expand(CYTHON_UNUSED PyObject *__py
     __Pyx_XDECREF_SET(__pyx_v_legal, __pyx_t_4);
     __pyx_t_4 = 0;
 
-    /* "node.py":124
+    /* "node.py":116
  *         """
  *         for legal in legal_deletions:
  *             move = legal[1]             # <<<<<<<<<<<<<<
  * 
  *             # create a (move:ELLS-node) item for all child nodes.
  */
-    __pyx_t_4 = __Pyx_GetItemInt(__pyx_v_legal, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 124, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_GetItemInt(__pyx_v_legal, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_XDECREF_SET(__pyx_v_move, __pyx_t_4);
     __pyx_t_4 = 0;
 
-    /* "node.py":127
+    /* "node.py":119
  * 
  *             # create a (move:ELLS-node) item for all child nodes.
  *             self.children[move] = ELLS_node(delete(self.state, move),             # <<<<<<<<<<<<<<
  *                                             move,
  *                                             legal[0],
  */
-    __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_ELLS_node); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 127, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_ELLS_node); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 119, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_delete); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 127, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_delete); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 119, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
-    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_state); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 127, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_state); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 119, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __pyx_t_8 = NULL;
     __pyx_t_9 = 0;
@@ -3031,7 +2801,7 @@ static PyObject *__pyx_pf_4node_9ELLS_node_12expand(CYTHON_UNUSED PyObject *__py
     #if CYTHON_FAST_PYCALL
     if (PyFunction_Check(__pyx_t_6)) {
       PyObject *__pyx_temp[3] = {__pyx_t_8, __pyx_t_7, __pyx_v_move};
-      __pyx_t_5 = __Pyx_PyFunction_FastCall(__pyx_t_6, __pyx_temp+1-__pyx_t_9, 2+__pyx_t_9); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 127, __pyx_L1_error)
+      __pyx_t_5 = __Pyx_PyFunction_FastCall(__pyx_t_6, __pyx_temp+1-__pyx_t_9, 2+__pyx_t_9); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 119, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
@@ -3040,14 +2810,14 @@ static PyObject *__pyx_pf_4node_9ELLS_node_12expand(CYTHON_UNUSED PyObject *__py
     #if CYTHON_FAST_PYCCALL
     if (__Pyx_PyFastCFunction_Check(__pyx_t_6)) {
       PyObject *__pyx_temp[3] = {__pyx_t_8, __pyx_t_7, __pyx_v_move};
-      __pyx_t_5 = __Pyx_PyCFunction_FastCall(__pyx_t_6, __pyx_temp+1-__pyx_t_9, 2+__pyx_t_9); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 127, __pyx_L1_error)
+      __pyx_t_5 = __Pyx_PyCFunction_FastCall(__pyx_t_6, __pyx_temp+1-__pyx_t_9, 2+__pyx_t_9); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 119, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     } else
     #endif
     {
-      __pyx_t_10 = PyTuple_New(2+__pyx_t_9); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 127, __pyx_L1_error)
+      __pyx_t_10 = PyTuple_New(2+__pyx_t_9); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 119, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_10);
       if (__pyx_t_8) {
         __Pyx_GIVEREF(__pyx_t_8); PyTuple_SET_ITEM(__pyx_t_10, 0, __pyx_t_8); __pyx_t_8 = NULL;
@@ -3058,30 +2828,30 @@ static PyObject *__pyx_pf_4node_9ELLS_node_12expand(CYTHON_UNUSED PyObject *__py
       __Pyx_GIVEREF(__pyx_v_move);
       PyTuple_SET_ITEM(__pyx_t_10, 1+__pyx_t_9, __pyx_v_move);
       __pyx_t_7 = 0;
-      __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_10, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 127, __pyx_L1_error)
+      __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_10, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 119, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
     }
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-    /* "node.py":129
+    /* "node.py":121
  *             self.children[move] = ELLS_node(delete(self.state, move),
  *                                             move,
  *                                             legal[0],             # <<<<<<<<<<<<<<
  *                                             parent=self,
  *                                             c=c)
  */
-    __pyx_t_6 = __Pyx_GetItemInt(__pyx_v_legal, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 129, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_GetItemInt(__pyx_v_legal, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 121, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
 
-    /* "node.py":127
+    /* "node.py":119
  * 
  *             # create a (move:ELLS-node) item for all child nodes.
  *             self.children[move] = ELLS_node(delete(self.state, move),             # <<<<<<<<<<<<<<
  *                                             move,
  *                                             legal[0],
  */
-    __pyx_t_10 = PyTuple_New(3); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 127, __pyx_L1_error)
+    __pyx_t_10 = PyTuple_New(3); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 119, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_10);
     __Pyx_GIVEREF(__pyx_t_5);
     PyTuple_SET_ITEM(__pyx_t_10, 0, __pyx_t_5);
@@ -3093,45 +2863,45 @@ static PyObject *__pyx_pf_4node_9ELLS_node_12expand(CYTHON_UNUSED PyObject *__py
     __pyx_t_5 = 0;
     __pyx_t_6 = 0;
 
-    /* "node.py":130
+    /* "node.py":122
  *                                             move,
  *                                             legal[0],
  *                                             parent=self,             # <<<<<<<<<<<<<<
  *                                             c=c)
  *         self.isExpanded = True
  */
-    __pyx_t_6 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 130, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 122, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
-    if (PyDict_SetItem(__pyx_t_6, __pyx_n_s_parent, __pyx_v_self) < 0) __PYX_ERR(0, 130, __pyx_L1_error)
+    if (PyDict_SetItem(__pyx_t_6, __pyx_n_s_parent, __pyx_v_self) < 0) __PYX_ERR(0, 122, __pyx_L1_error)
 
-    /* "node.py":131
+    /* "node.py":123
  *                                             legal[0],
  *                                             parent=self,
  *                                             c=c)             # <<<<<<<<<<<<<<
  *         self.isExpanded = True
  * 
  */
-    if (PyDict_SetItem(__pyx_t_6, __pyx_n_s_c, __pyx_v_c) < 0) __PYX_ERR(0, 130, __pyx_L1_error)
+    if (PyDict_SetItem(__pyx_t_6, __pyx_n_s_c, __pyx_v_c) < 0) __PYX_ERR(0, 122, __pyx_L1_error)
 
-    /* "node.py":127
+    /* "node.py":119
  * 
  *             # create a (move:ELLS-node) item for all child nodes.
  *             self.children[move] = ELLS_node(delete(self.state, move),             # <<<<<<<<<<<<<<
  *                                             move,
  *                                             legal[0],
  */
-    __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_10, __pyx_t_6); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 127, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_10, __pyx_t_6); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 119, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_children); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 127, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_children); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 119, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
-    if (unlikely(PyObject_SetItem(__pyx_t_6, __pyx_v_move, __pyx_t_5) < 0)) __PYX_ERR(0, 127, __pyx_L1_error)
+    if (unlikely(PyObject_SetItem(__pyx_t_6, __pyx_v_move, __pyx_t_5) < 0)) __PYX_ERR(0, 119, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-    /* "node.py":123
+    /* "node.py":115
  *             :return: None
  *         """
  *         for legal in legal_deletions:             # <<<<<<<<<<<<<<
@@ -3141,16 +2911,16 @@ static PyObject *__pyx_pf_4node_9ELLS_node_12expand(CYTHON_UNUSED PyObject *__py
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "node.py":132
+  /* "node.py":124
  *                                             parent=self,
  *                                             c=c)
  *         self.isExpanded = True             # <<<<<<<<<<<<<<
  * 
  *     def refresh(self):
  */
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_isExpanded, Py_True) < 0) __PYX_ERR(0, 132, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_isExpanded, Py_True) < 0) __PYX_ERR(0, 124, __pyx_L1_error)
 
-  /* "node.py":115
+  /* "node.py":107
  *             current = current.parent
  * 
  *     def expand(self, legal_deletions, c):             # <<<<<<<<<<<<<<
@@ -3179,30 +2949,30 @@ static PyObject *__pyx_pf_4node_9ELLS_node_12expand(CYTHON_UNUSED PyObject *__py
   return __pyx_r;
 }
 
-/* "node.py":134
+/* "node.py":126
  *         self.isExpanded = True
  * 
  *     def refresh(self):             # <<<<<<<<<<<<<<
  *         """
- *             The function to refresh reward and score of the node.
+ *             The function to refresh the reward and score of the node.
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4node_9ELLS_node_15refresh(PyObject *__pyx_self, PyObject *__pyx_v_self); /*proto*/
-static char __pyx_doc_4node_9ELLS_node_14refresh[] = "\n            The function to refresh reward and score of the node.\n            :return: None\n        ";
-static PyMethodDef __pyx_mdef_4node_9ELLS_node_15refresh = {"refresh", (PyCFunction)__pyx_pw_4node_9ELLS_node_15refresh, METH_O, __pyx_doc_4node_9ELLS_node_14refresh};
-static PyObject *__pyx_pw_4node_9ELLS_node_15refresh(PyObject *__pyx_self, PyObject *__pyx_v_self) {
+static PyObject *__pyx_pw_4node_9ELLS_node_13refresh(PyObject *__pyx_self, PyObject *__pyx_v_self); /*proto*/
+static char __pyx_doc_4node_9ELLS_node_12refresh[] = "\n            The function to refresh the reward and score of the node.\n            :return: None\n        ";
+static PyMethodDef __pyx_mdef_4node_9ELLS_node_13refresh = {"refresh", (PyCFunction)__pyx_pw_4node_9ELLS_node_13refresh, METH_O, __pyx_doc_4node_9ELLS_node_12refresh};
+static PyObject *__pyx_pw_4node_9ELLS_node_13refresh(PyObject *__pyx_self, PyObject *__pyx_v_self) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("refresh (wrapper)", 0);
-  __pyx_r = __pyx_pf_4node_9ELLS_node_14refresh(__pyx_self, ((PyObject *)__pyx_v_self));
+  __pyx_r = __pyx_pf_4node_9ELLS_node_12refresh(__pyx_self, ((PyObject *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4node_9ELLS_node_14refresh(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self) {
+static PyObject *__pyx_pf_4node_9ELLS_node_12refresh(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   int __pyx_lineno = 0;
@@ -3210,30 +2980,30 @@ static PyObject *__pyx_pf_4node_9ELLS_node_14refresh(CYTHON_UNUSED PyObject *__p
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("refresh", 0);
 
-  /* "node.py":139
+  /* "node.py":131
  *             :return: None
  *         """
  *         self.reward = 0             # <<<<<<<<<<<<<<
  *         self.score = 0
  * 
  */
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_reward, __pyx_int_0) < 0) __PYX_ERR(0, 139, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_reward, __pyx_int_0) < 0) __PYX_ERR(0, 131, __pyx_L1_error)
 
-  /* "node.py":140
+  /* "node.py":132
  *         """
  *         self.reward = 0
  *         self.score = 0             # <<<<<<<<<<<<<<
  * 
  * 
  */
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_score, __pyx_int_0) < 0) __PYX_ERR(0, 140, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_score, __pyx_int_0) < 0) __PYX_ERR(0, 132, __pyx_L1_error)
 
-  /* "node.py":134
+  /* "node.py":126
  *         self.isExpanded = True
  * 
  *     def refresh(self):             # <<<<<<<<<<<<<<
  *         """
- *             The function to refresh reward and score of the node.
+ *             The function to refresh the reward and score of the node.
  */
 
   /* function exit code */
@@ -3248,7 +3018,7 @@ static PyObject *__pyx_pf_4node_9ELLS_node_14refresh(CYTHON_UNUSED PyObject *__p
   return __pyx_r;
 }
 
-/* "node.py":147
+/* "node.py":139
  *         The class to construct the parent node of the root node.
  *     """
  *     def __init__(self):             # <<<<<<<<<<<<<<
@@ -3277,14 +3047,14 @@ static PyObject *__pyx_pf_4node_9DummyNode___init__(CYTHON_UNUSED PyObject *__py
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__init__", 0);
 
-  /* "node.py":148
+  /* "node.py":140
  *     """
  *     def __init__(self):
  *         self.parent = None             # <<<<<<<<<<<<<<
  */
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_parent, Py_None) < 0) __PYX_ERR(0, 148, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_parent, Py_None) < 0) __PYX_ERR(0, 140, __pyx_L1_error)
 
-  /* "node.py":147
+  /* "node.py":139
  *         The class to construct the parent node of the root node.
  *     """
  *     def __init__(self):             # <<<<<<<<<<<<<<
@@ -3354,9 +3124,8 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_DummyNode___init, __pyx_k_DummyNode___init, sizeof(__pyx_k_DummyNode___init), 0, 0, 1, 1},
   {&__pyx_n_s_ELLS_node, __pyx_k_ELLS_node, sizeof(__pyx_k_ELLS_node), 0, 0, 1, 1},
   {&__pyx_n_s_ELLS_node___init, __pyx_k_ELLS_node___init, sizeof(__pyx_k_ELLS_node___init), 0, 0, 1, 1},
-  {&__pyx_n_s_ELLS_node__is_fully_expanded, __pyx_k_ELLS_node__is_fully_expanded, sizeof(__pyx_k_ELLS_node__is_fully_expanded), 0, 0, 1, 1},
   {&__pyx_n_s_ELLS_node__print_attribute, __pyx_k_ELLS_node__print_attribute, sizeof(__pyx_k_ELLS_node__print_attribute), 0, 0, 1, 1},
-  {&__pyx_n_s_ELLS_node_backpropogation, __pyx_k_ELLS_node_backpropogation, sizeof(__pyx_k_ELLS_node_backpropogation), 0, 0, 1, 1},
+  {&__pyx_n_s_ELLS_node_backpropagation, __pyx_k_ELLS_node_backpropagation, sizeof(__pyx_k_ELLS_node_backpropagation), 0, 0, 1, 1},
   {&__pyx_n_s_ELLS_node_compute_uct, __pyx_k_ELLS_node_compute_uct, sizeof(__pyx_k_ELLS_node_compute_uct), 0, 0, 1, 1},
   {&__pyx_n_s_ELLS_node_expand, __pyx_k_ELLS_node_expand, sizeof(__pyx_k_ELLS_node_expand), 0, 0, 1, 1},
   {&__pyx_n_s_ELLS_node_refresh, __pyx_k_ELLS_node_refresh, sizeof(__pyx_k_ELLS_node_refresh), 0, 0, 1, 1},
@@ -3364,7 +3133,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_kp_s_The_class_is_to_store_all_infor, __pyx_k_The_class_is_to_store_all_infor, sizeof(__pyx_k_The_class_is_to_store_all_infor), 0, 0, 1, 0},
   {&__pyx_kp_s_The_class_to_construct_the_pare, __pyx_k_The_class_to_construct_the_pare, sizeof(__pyx_k_The_class_to_construct_the_pare), 0, 0, 1, 0},
   {&__pyx_n_s_UCT, __pyx_k_UCT, sizeof(__pyx_k_UCT), 0, 0, 1, 1},
-  {&__pyx_n_s_backpropogation, __pyx_k_backpropogation, sizeof(__pyx_k_backpropogation), 0, 0, 1, 1},
+  {&__pyx_n_s_backpropagation, __pyx_k_backpropagation, sizeof(__pyx_k_backpropagation), 0, 0, 1, 1},
   {&__pyx_n_s_best_child, __pyx_k_best_child, sizeof(__pyx_k_best_child), 0, 0, 1, 1},
   {&__pyx_n_s_c, __pyx_k_c, sizeof(__pyx_k_c), 0, 0, 1, 1},
   {&__pyx_n_s_child, __pyx_k_child, sizeof(__pyx_k_child), 0, 0, 1, 1},
@@ -3385,7 +3154,6 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_inf, __pyx_k_inf, sizeof(__pyx_k_inf), 0, 0, 1, 1},
   {&__pyx_n_s_init, __pyx_k_init, sizeof(__pyx_k_init), 0, 0, 1, 1},
   {&__pyx_n_s_isExpanded, __pyx_k_isExpanded, sizeof(__pyx_k_isExpanded), 0, 0, 1, 1},
-  {&__pyx_n_s_is_fully_expanded, __pyx_k_is_fully_expanded, sizeof(__pyx_k_is_fully_expanded), 0, 0, 1, 1},
   {&__pyx_n_s_legal, __pyx_k_legal, sizeof(__pyx_k_legal), 0, 0, 1, 1},
   {&__pyx_n_s_legal_deletions, __pyx_k_legal_deletions, sizeof(__pyx_k_legal_deletions), 0, 0, 1, 1},
   {&__pyx_n_s_log, __pyx_k_log, sizeof(__pyx_k_log), 0, 0, 1, 1},
@@ -3393,7 +3161,6 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_math, __pyx_k_math, sizeof(__pyx_k_math), 0, 0, 1, 1},
   {&__pyx_n_s_maxUCT, __pyx_k_maxUCT, sizeof(__pyx_k_maxUCT), 0, 0, 1, 1},
   {&__pyx_n_s_metaclass, __pyx_k_metaclass, sizeof(__pyx_k_metaclass), 0, 0, 1, 1},
-  {&__pyx_n_s_min_reward, __pyx_k_min_reward, sizeof(__pyx_k_min_reward), 0, 0, 1, 1},
   {&__pyx_n_s_module, __pyx_k_module, sizeof(__pyx_k_module), 0, 0, 1, 1},
   {&__pyx_n_s_move, __pyx_k_move, sizeof(__pyx_k_move), 0, 0, 1, 1},
   {&__pyx_n_s_name, __pyx_k_name, sizeof(__pyx_k_name), 0, 0, 1, 1},
@@ -3422,8 +3189,8 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {0, 0, 0, 0, 0, 0, 0}
 };
 static CYTHON_SMALL_CODE int __Pyx_InitCachedBuiltins(void) {
-  __pyx_builtin_object = __Pyx_GetBuiltinName(__pyx_n_s_object); if (!__pyx_builtin_object) __PYX_ERR(0, 143, __pyx_L1_error)
-  __pyx_builtin_vars = __Pyx_GetBuiltinName(__pyx_n_s_vars); if (!__pyx_builtin_vars) __PYX_ERR(0, 57, __pyx_L1_error)
+  __pyx_builtin_object = __Pyx_GetBuiltinName(__pyx_n_s_object); if (!__pyx_builtin_object) __PYX_ERR(0, 135, __pyx_L1_error)
+  __pyx_builtin_vars = __Pyx_GetBuiltinName(__pyx_n_s_vars); if (!__pyx_builtin_vars) __PYX_ERR(0, 56, __pyx_L1_error)
   return 0;
   __pyx_L1_error:;
   return -1;
@@ -3460,111 +3227,99 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__5);
   __Pyx_GIVEREF(__pyx_tuple__5);
 
-  /* "node.py":52
+  /* "node.py":51
  *         self.visits = 0  # The number of visits on the node.
  * 
  *     def _print_attribute(self):             # <<<<<<<<<<<<<<
  *         """
  *             The function to print all attributes' values of the node.
  */
-  __pyx_tuple__6 = PyTuple_Pack(1, __pyx_n_s_self); if (unlikely(!__pyx_tuple__6)) __PYX_ERR(0, 52, __pyx_L1_error)
+  __pyx_tuple__6 = PyTuple_Pack(1, __pyx_n_s_self); if (unlikely(!__pyx_tuple__6)) __PYX_ERR(0, 51, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__6);
   __Pyx_GIVEREF(__pyx_tuple__6);
-  __pyx_codeobj__7 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__6, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_node_py, __pyx_n_s_print_attribute, 52, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__7)) __PYX_ERR(0, 52, __pyx_L1_error)
+  __pyx_codeobj__7 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__6, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_node_py, __pyx_n_s_print_attribute, 51, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__7)) __PYX_ERR(0, 51, __pyx_L1_error)
 
-  /* "node.py":59
+  /* "node.py":58
  *         print(vars(self))
  * 
  *     def compute_uct(self):             # <<<<<<<<<<<<<<
  *         """
- *             The function to calculate UCT value of the node.
+ *             The function to calculate the UCT value of the node.
  */
-  __pyx_tuple__8 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_parent_visits); if (unlikely(!__pyx_tuple__8)) __PYX_ERR(0, 59, __pyx_L1_error)
+  __pyx_tuple__8 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_parent_visits); if (unlikely(!__pyx_tuple__8)) __PYX_ERR(0, 58, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__8);
   __Pyx_GIVEREF(__pyx_tuple__8);
-  __pyx_codeobj__9 = (PyObject*)__Pyx_PyCode_New(1, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__8, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_node_py, __pyx_n_s_compute_uct, 59, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__9)) __PYX_ERR(0, 59, __pyx_L1_error)
+  __pyx_codeobj__9 = (PyObject*)__Pyx_PyCode_New(1, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__8, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_node_py, __pyx_n_s_compute_uct, 58, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__9)) __PYX_ERR(0, 58, __pyx_L1_error)
 
-  /* "node.py":71
+  /* "node.py":70
  *             return float('inf')
- * 
- *     def _is_fully_expanded(self):             # <<<<<<<<<<<<<<
- *         for child in self.children.values():
- *             if child.visits == 0: return False
- */
-  __pyx_tuple__10 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_child); if (unlikely(!__pyx_tuple__10)) __PYX_ERR(0, 71, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__10);
-  __Pyx_GIVEREF(__pyx_tuple__10);
-  __pyx_codeobj__11 = (PyObject*)__Pyx_PyCode_New(1, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__10, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_node_py, __pyx_n_s_is_fully_expanded, 71, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__11)) __PYX_ERR(0, 71, __pyx_L1_error)
-
-  /* "node.py":76
- *         return True
  * 
  *     def select_leaf(self):             # <<<<<<<<<<<<<<
  *         """
- *             The function to recursively select the current most promising node (maximizes UCT) until reaches
+ *             The function to recursively select the current most promising node (maximizes UCT) until it reaches
  */
-  __pyx_tuple__12 = PyTuple_Pack(7, __pyx_n_s_self, __pyx_n_s_current, __pyx_n_s_best_child, __pyx_n_s_selected_nodes_R, __pyx_n_s_maxUCT, __pyx_n_s_child, __pyx_n_s_UCT); if (unlikely(!__pyx_tuple__12)) __PYX_ERR(0, 76, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__12);
-  __Pyx_GIVEREF(__pyx_tuple__12);
-  __pyx_codeobj__13 = (PyObject*)__Pyx_PyCode_New(1, 0, 7, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__12, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_node_py, __pyx_n_s_select_leaf, 76, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__13)) __PYX_ERR(0, 76, __pyx_L1_error)
+  __pyx_tuple__10 = PyTuple_Pack(7, __pyx_n_s_self, __pyx_n_s_current, __pyx_n_s_best_child, __pyx_n_s_selected_nodes_R, __pyx_n_s_maxUCT, __pyx_n_s_child, __pyx_n_s_UCT); if (unlikely(!__pyx_tuple__10)) __PYX_ERR(0, 70, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__10);
+  __Pyx_GIVEREF(__pyx_tuple__10);
+  __pyx_codeobj__11 = (PyObject*)__Pyx_PyCode_New(1, 0, 7, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__10, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_node_py, __pyx_n_s_select_leaf, 70, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__11)) __PYX_ERR(0, 70, __pyx_L1_error)
 
-  /* "node.py":101
+  /* "node.py":95
  *         return current, selected_nodes_R
  * 
- *     def backpropogation(self, simulation_reward):             # <<<<<<<<<<<<<<
+ *     def backpropagation(self, simulation_reward):             # <<<<<<<<<<<<<<
  *         """
  *             The function to update the current 'move'(delete) sequence with the simulation result.
  */
-  __pyx_tuple__14 = PyTuple_Pack(3, __pyx_n_s_self, __pyx_n_s_simulation_reward, __pyx_n_s_current); if (unlikely(!__pyx_tuple__14)) __PYX_ERR(0, 101, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__14);
-  __Pyx_GIVEREF(__pyx_tuple__14);
-  __pyx_codeobj__15 = (PyObject*)__Pyx_PyCode_New(2, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__14, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_node_py, __pyx_n_s_backpropogation, 101, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__15)) __PYX_ERR(0, 101, __pyx_L1_error)
+  __pyx_tuple__12 = PyTuple_Pack(3, __pyx_n_s_self, __pyx_n_s_simulation_reward, __pyx_n_s_current); if (unlikely(!__pyx_tuple__12)) __PYX_ERR(0, 95, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__12);
+  __Pyx_GIVEREF(__pyx_tuple__12);
+  __pyx_codeobj__13 = (PyObject*)__Pyx_PyCode_New(2, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__12, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_node_py, __pyx_n_s_backpropagation, 95, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__13)) __PYX_ERR(0, 95, __pyx_L1_error)
 
-  /* "node.py":115
+  /* "node.py":107
  *             current = current.parent
  * 
  *     def expand(self, legal_deletions, c):             # <<<<<<<<<<<<<<
  *         """
  *             The function to add all states reachable from the current most promising node to the tree.
  */
-  __pyx_tuple__16 = PyTuple_Pack(5, __pyx_n_s_self, __pyx_n_s_legal_deletions, __pyx_n_s_c, __pyx_n_s_legal, __pyx_n_s_move); if (unlikely(!__pyx_tuple__16)) __PYX_ERR(0, 115, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__16);
-  __Pyx_GIVEREF(__pyx_tuple__16);
-  __pyx_codeobj__17 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__16, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_node_py, __pyx_n_s_expand, 115, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__17)) __PYX_ERR(0, 115, __pyx_L1_error)
+  __pyx_tuple__14 = PyTuple_Pack(5, __pyx_n_s_self, __pyx_n_s_legal_deletions, __pyx_n_s_c, __pyx_n_s_legal, __pyx_n_s_move); if (unlikely(!__pyx_tuple__14)) __PYX_ERR(0, 107, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__14);
+  __Pyx_GIVEREF(__pyx_tuple__14);
+  __pyx_codeobj__15 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__14, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_node_py, __pyx_n_s_expand, 107, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__15)) __PYX_ERR(0, 107, __pyx_L1_error)
 
-  /* "node.py":134
+  /* "node.py":126
  *         self.isExpanded = True
  * 
  *     def refresh(self):             # <<<<<<<<<<<<<<
  *         """
- *             The function to refresh reward and score of the node.
+ *             The function to refresh the reward and score of the node.
  */
-  __pyx_tuple__18 = PyTuple_Pack(1, __pyx_n_s_self); if (unlikely(!__pyx_tuple__18)) __PYX_ERR(0, 134, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__18);
-  __Pyx_GIVEREF(__pyx_tuple__18);
-  __pyx_codeobj__19 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__18, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_node_py, __pyx_n_s_refresh, 134, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__19)) __PYX_ERR(0, 134, __pyx_L1_error)
+  __pyx_tuple__16 = PyTuple_Pack(1, __pyx_n_s_self); if (unlikely(!__pyx_tuple__16)) __PYX_ERR(0, 126, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__16);
+  __Pyx_GIVEREF(__pyx_tuple__16);
+  __pyx_codeobj__17 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__16, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_node_py, __pyx_n_s_refresh, 126, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__17)) __PYX_ERR(0, 126, __pyx_L1_error)
 
-  /* "node.py":143
+  /* "node.py":135
  * 
  * 
  * class DummyNode(object):             # <<<<<<<<<<<<<<
  *     """
  *         The class to construct the parent node of the root node.
  */
-  __pyx_tuple__20 = PyTuple_Pack(1, __pyx_builtin_object); if (unlikely(!__pyx_tuple__20)) __PYX_ERR(0, 143, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__20);
-  __Pyx_GIVEREF(__pyx_tuple__20);
+  __pyx_tuple__18 = PyTuple_Pack(1, __pyx_builtin_object); if (unlikely(!__pyx_tuple__18)) __PYX_ERR(0, 135, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__18);
+  __Pyx_GIVEREF(__pyx_tuple__18);
 
-  /* "node.py":147
+  /* "node.py":139
  *         The class to construct the parent node of the root node.
  *     """
  *     def __init__(self):             # <<<<<<<<<<<<<<
  *         self.parent = None
  */
-  __pyx_tuple__21 = PyTuple_Pack(1, __pyx_n_s_self); if (unlikely(!__pyx_tuple__21)) __PYX_ERR(0, 147, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__21);
-  __Pyx_GIVEREF(__pyx_tuple__21);
-  __pyx_codeobj__22 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__21, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_node_py, __pyx_n_s_init, 147, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__22)) __PYX_ERR(0, 147, __pyx_L1_error)
+  __pyx_tuple__19 = PyTuple_Pack(1, __pyx_n_s_self); if (unlikely(!__pyx_tuple__19)) __PYX_ERR(0, 139, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__19);
+  __Pyx_GIVEREF(__pyx_tuple__19);
+  __pyx_codeobj__20 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__19, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_node_py, __pyx_n_s_init, 139, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__20)) __PYX_ERR(0, 139, __pyx_L1_error)
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;
@@ -3917,88 +3672,76 @@ if (!__Pyx_RefNanny) {
   if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_n_s_init, __pyx_t_1) < 0) __PYX_ERR(0, 30, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "node.py":52
+  /* "node.py":51
  *         self.visits = 0  # The number of visits on the node.
  * 
  *     def _print_attribute(self):             # <<<<<<<<<<<<<<
  *         """
  *             The function to print all attributes' values of the node.
  */
-  __pyx_t_1 = __Pyx_CyFunction_New(&__pyx_mdef_4node_9ELLS_node_3_print_attribute, 0, __pyx_n_s_ELLS_node__print_attribute, NULL, __pyx_n_s_node, __pyx_d, ((PyObject *)__pyx_codeobj__7)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 52, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_CyFunction_New(&__pyx_mdef_4node_9ELLS_node_3_print_attribute, 0, __pyx_n_s_ELLS_node__print_attribute, NULL, __pyx_n_s_node, __pyx_d, ((PyObject *)__pyx_codeobj__7)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 51, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_n_s_print_attribute, __pyx_t_1) < 0) __PYX_ERR(0, 52, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_n_s_print_attribute, __pyx_t_1) < 0) __PYX_ERR(0, 51, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "node.py":59
+  /* "node.py":58
  *         print(vars(self))
  * 
  *     def compute_uct(self):             # <<<<<<<<<<<<<<
  *         """
- *             The function to calculate UCT value of the node.
+ *             The function to calculate the UCT value of the node.
  */
-  __pyx_t_1 = __Pyx_CyFunction_New(&__pyx_mdef_4node_9ELLS_node_5compute_uct, 0, __pyx_n_s_ELLS_node_compute_uct, NULL, __pyx_n_s_node, __pyx_d, ((PyObject *)__pyx_codeobj__9)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 59, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_CyFunction_New(&__pyx_mdef_4node_9ELLS_node_5compute_uct, 0, __pyx_n_s_ELLS_node_compute_uct, NULL, __pyx_n_s_node, __pyx_d, ((PyObject *)__pyx_codeobj__9)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 58, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_n_s_compute_uct, __pyx_t_1) < 0) __PYX_ERR(0, 59, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_n_s_compute_uct, __pyx_t_1) < 0) __PYX_ERR(0, 58, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "node.py":71
+  /* "node.py":70
  *             return float('inf')
- * 
- *     def _is_fully_expanded(self):             # <<<<<<<<<<<<<<
- *         for child in self.children.values():
- *             if child.visits == 0: return False
- */
-  __pyx_t_1 = __Pyx_CyFunction_New(&__pyx_mdef_4node_9ELLS_node_7_is_fully_expanded, 0, __pyx_n_s_ELLS_node__is_fully_expanded, NULL, __pyx_n_s_node, __pyx_d, ((PyObject *)__pyx_codeobj__11)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 71, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_n_s_is_fully_expanded, __pyx_t_1) < 0) __PYX_ERR(0, 71, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-
-  /* "node.py":76
- *         return True
  * 
  *     def select_leaf(self):             # <<<<<<<<<<<<<<
  *         """
- *             The function to recursively select the current most promising node (maximizes UCT) until reaches
+ *             The function to recursively select the current most promising node (maximizes UCT) until it reaches
  */
-  __pyx_t_1 = __Pyx_CyFunction_New(&__pyx_mdef_4node_9ELLS_node_9select_leaf, 0, __pyx_n_s_ELLS_node_select_leaf, NULL, __pyx_n_s_node, __pyx_d, ((PyObject *)__pyx_codeobj__13)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 76, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_CyFunction_New(&__pyx_mdef_4node_9ELLS_node_7select_leaf, 0, __pyx_n_s_ELLS_node_select_leaf, NULL, __pyx_n_s_node, __pyx_d, ((PyObject *)__pyx_codeobj__11)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 70, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_n_s_select_leaf, __pyx_t_1) < 0) __PYX_ERR(0, 76, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_n_s_select_leaf, __pyx_t_1) < 0) __PYX_ERR(0, 70, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "node.py":101
+  /* "node.py":95
  *         return current, selected_nodes_R
  * 
- *     def backpropogation(self, simulation_reward):             # <<<<<<<<<<<<<<
+ *     def backpropagation(self, simulation_reward):             # <<<<<<<<<<<<<<
  *         """
  *             The function to update the current 'move'(delete) sequence with the simulation result.
  */
-  __pyx_t_1 = __Pyx_CyFunction_New(&__pyx_mdef_4node_9ELLS_node_11backpropogation, 0, __pyx_n_s_ELLS_node_backpropogation, NULL, __pyx_n_s_node, __pyx_d, ((PyObject *)__pyx_codeobj__15)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 101, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_CyFunction_New(&__pyx_mdef_4node_9ELLS_node_9backpropagation, 0, __pyx_n_s_ELLS_node_backpropagation, NULL, __pyx_n_s_node, __pyx_d, ((PyObject *)__pyx_codeobj__13)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 95, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_n_s_backpropogation, __pyx_t_1) < 0) __PYX_ERR(0, 101, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_n_s_backpropagation, __pyx_t_1) < 0) __PYX_ERR(0, 95, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "node.py":115
+  /* "node.py":107
  *             current = current.parent
  * 
  *     def expand(self, legal_deletions, c):             # <<<<<<<<<<<<<<
  *         """
  *             The function to add all states reachable from the current most promising node to the tree.
  */
-  __pyx_t_1 = __Pyx_CyFunction_New(&__pyx_mdef_4node_9ELLS_node_13expand, 0, __pyx_n_s_ELLS_node_expand, NULL, __pyx_n_s_node, __pyx_d, ((PyObject *)__pyx_codeobj__17)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 115, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_CyFunction_New(&__pyx_mdef_4node_9ELLS_node_11expand, 0, __pyx_n_s_ELLS_node_expand, NULL, __pyx_n_s_node, __pyx_d, ((PyObject *)__pyx_codeobj__15)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 107, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_n_s_expand, __pyx_t_1) < 0) __PYX_ERR(0, 115, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_n_s_expand, __pyx_t_1) < 0) __PYX_ERR(0, 107, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "node.py":134
+  /* "node.py":126
  *         self.isExpanded = True
  * 
  *     def refresh(self):             # <<<<<<<<<<<<<<
  *         """
- *             The function to refresh reward and score of the node.
+ *             The function to refresh the reward and score of the node.
  */
-  __pyx_t_1 = __Pyx_CyFunction_New(&__pyx_mdef_4node_9ELLS_node_15refresh, 0, __pyx_n_s_ELLS_node_refresh, NULL, __pyx_n_s_node, __pyx_d, ((PyObject *)__pyx_codeobj__19)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 134, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_CyFunction_New(&__pyx_mdef_4node_9ELLS_node_13refresh, 0, __pyx_n_s_ELLS_node_refresh, NULL, __pyx_n_s_node, __pyx_d, ((PyObject *)__pyx_codeobj__17)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 126, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_n_s_refresh, __pyx_t_1) < 0) __PYX_ERR(0, 134, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_n_s_refresh, __pyx_t_1) < 0) __PYX_ERR(0, 126, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
   /* "node.py":25
@@ -4014,39 +3757,39 @@ if (!__Pyx_RefNanny) {
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "node.py":143
+  /* "node.py":135
  * 
  * 
  * class DummyNode(object):             # <<<<<<<<<<<<<<
  *     """
  *         The class to construct the parent node of the root node.
  */
-  __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_tuple__20); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 143, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_tuple__18); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 135, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_tuple__20, __pyx_n_s_DummyNode, __pyx_n_s_DummyNode, (PyObject *) NULL, __pyx_n_s_node, __pyx_kp_s_The_class_to_construct_the_pare); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 143, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_tuple__18, __pyx_n_s_DummyNode, __pyx_n_s_DummyNode, (PyObject *) NULL, __pyx_n_s_node, __pyx_kp_s_The_class_to_construct_the_pare); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 135, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
 
-  /* "node.py":147
+  /* "node.py":139
  *         The class to construct the parent node of the root node.
  *     """
  *     def __init__(self):             # <<<<<<<<<<<<<<
  *         self.parent = None
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_4node_9DummyNode_1__init__, 0, __pyx_n_s_DummyNode___init, NULL, __pyx_n_s_node, __pyx_d, ((PyObject *)__pyx_codeobj__22)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 147, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_4node_9DummyNode_1__init__, 0, __pyx_n_s_DummyNode___init, NULL, __pyx_n_s_node, __pyx_d, ((PyObject *)__pyx_codeobj__20)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 139, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_init, __pyx_t_3) < 0) __PYX_ERR(0, 147, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_init, __pyx_t_3) < 0) __PYX_ERR(0, 139, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "node.py":143
+  /* "node.py":135
  * 
  * 
  * class DummyNode(object):             # <<<<<<<<<<<<<<
  *     """
  *         The class to construct the parent node of the root node.
  */
-  __pyx_t_3 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_DummyNode, __pyx_tuple__20, __pyx_t_1, NULL, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 143, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_DummyNode, __pyx_tuple__18, __pyx_t_1, NULL, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 135, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_DummyNode, __pyx_t_3) < 0) __PYX_ERR(0, 143, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_DummyNode, __pyx_t_3) < 0) __PYX_ERR(0, 135, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -4889,95 +4632,6 @@ static CYTHON_INLINE PyObject* __Pyx_PyInt_NeObjC(PyObject *op1, PyObject *op2, 
         PyObject_RichCompare(op1, op2, Py_NE));
 }
 
-/* PyObjectCallNoArg */
-#if CYTHON_COMPILING_IN_CPYTHON
-static CYTHON_INLINE PyObject* __Pyx_PyObject_CallNoArg(PyObject *func) {
-#if CYTHON_FAST_PYCALL
-    if (PyFunction_Check(func)) {
-        return __Pyx_PyFunction_FastCall(func, NULL, 0);
-    }
-#endif
-#ifdef __Pyx_CyFunction_USED
-    if (likely(PyCFunction_Check(func) || __Pyx_CyFunction_Check(func)))
-#else
-    if (likely(PyCFunction_Check(func)))
-#endif
-    {
-        if (likely(PyCFunction_GET_FLAGS(func) & METH_NOARGS)) {
-            return __Pyx_PyObject_CallMethO(func, NULL);
-        }
-    }
-    return __Pyx_PyObject_Call(func, __pyx_empty_tuple, NULL);
-}
-#endif
-
-/* PyIntCompare */
-static CYTHON_INLINE PyObject* __Pyx_PyInt_EqObjC(PyObject *op1, PyObject *op2, CYTHON_UNUSED long intval, CYTHON_UNUSED long inplace) {
-    if (op1 == op2) {
-        Py_RETURN_TRUE;
-    }
-    #if PY_MAJOR_VERSION < 3
-    if (likely(PyInt_CheckExact(op1))) {
-        const long b = intval;
-        long a = PyInt_AS_LONG(op1);
-        if (a == b) Py_RETURN_TRUE; else Py_RETURN_FALSE;
-    }
-    #endif
-    #if CYTHON_USE_PYLONG_INTERNALS
-    if (likely(PyLong_CheckExact(op1))) {
-        int unequal;
-        unsigned long uintval;
-        Py_ssize_t size = Py_SIZE(op1);
-        const digit* digits = ((PyLongObject*)op1)->ob_digit;
-        if (intval == 0) {
-            if (size == 0) Py_RETURN_TRUE; else Py_RETURN_FALSE;
-        } else if (intval < 0) {
-            if (size >= 0)
-                Py_RETURN_FALSE;
-            intval = -intval;
-            size = -size;
-        } else {
-            if (size <= 0)
-                Py_RETURN_FALSE;
-        }
-        uintval = (unsigned long) intval;
-#if PyLong_SHIFT * 4 < SIZEOF_LONG*8
-        if (uintval >> (PyLong_SHIFT * 4)) {
-            unequal = (size != 5) || (digits[0] != (uintval & (unsigned long) PyLong_MASK))
-                 | (digits[1] != ((uintval >> (1 * PyLong_SHIFT)) & (unsigned long) PyLong_MASK)) | (digits[2] != ((uintval >> (2 * PyLong_SHIFT)) & (unsigned long) PyLong_MASK)) | (digits[3] != ((uintval >> (3 * PyLong_SHIFT)) & (unsigned long) PyLong_MASK)) | (digits[4] != ((uintval >> (4 * PyLong_SHIFT)) & (unsigned long) PyLong_MASK));
-        } else
-#endif
-#if PyLong_SHIFT * 3 < SIZEOF_LONG*8
-        if (uintval >> (PyLong_SHIFT * 3)) {
-            unequal = (size != 4) || (digits[0] != (uintval & (unsigned long) PyLong_MASK))
-                 | (digits[1] != ((uintval >> (1 * PyLong_SHIFT)) & (unsigned long) PyLong_MASK)) | (digits[2] != ((uintval >> (2 * PyLong_SHIFT)) & (unsigned long) PyLong_MASK)) | (digits[3] != ((uintval >> (3 * PyLong_SHIFT)) & (unsigned long) PyLong_MASK));
-        } else
-#endif
-#if PyLong_SHIFT * 2 < SIZEOF_LONG*8
-        if (uintval >> (PyLong_SHIFT * 2)) {
-            unequal = (size != 3) || (digits[0] != (uintval & (unsigned long) PyLong_MASK))
-                 | (digits[1] != ((uintval >> (1 * PyLong_SHIFT)) & (unsigned long) PyLong_MASK)) | (digits[2] != ((uintval >> (2 * PyLong_SHIFT)) & (unsigned long) PyLong_MASK));
-        } else
-#endif
-#if PyLong_SHIFT * 1 < SIZEOF_LONG*8
-        if (uintval >> (PyLong_SHIFT * 1)) {
-            unequal = (size != 2) || (digits[0] != (uintval & (unsigned long) PyLong_MASK))
-                 | (digits[1] != ((uintval >> (1 * PyLong_SHIFT)) & (unsigned long) PyLong_MASK));
-        } else
-#endif
-            unequal = (size != 1) || (((unsigned long) digits[0]) != (uintval & (unsigned long) PyLong_MASK));
-        if (unequal == 0) Py_RETURN_TRUE; else Py_RETURN_FALSE;
-    }
-    #endif
-    if (PyFloat_CheckExact(op1)) {
-        const long b = intval;
-        double a = PyFloat_AS_DOUBLE(op1);
-        if ((double)a == (double)b) Py_RETURN_TRUE; else Py_RETURN_FALSE;
-    }
-    return (
-        PyObject_RichCompare(op1, op2, Py_EQ));
-}
-
 /* pyobject_as_double */
 static double __Pyx__PyObject_AsDouble(PyObject* obj) {
     PyObject* float_value;
@@ -5017,6 +4671,28 @@ static double __Pyx__PyObject_AsDouble(PyObject* obj) {
 bad:
     return (double)-1;
 }
+
+/* PyObjectCallNoArg */
+#if CYTHON_COMPILING_IN_CPYTHON
+static CYTHON_INLINE PyObject* __Pyx_PyObject_CallNoArg(PyObject *func) {
+#if CYTHON_FAST_PYCALL
+    if (PyFunction_Check(func)) {
+        return __Pyx_PyFunction_FastCall(func, NULL, 0);
+    }
+#endif
+#ifdef __Pyx_CyFunction_USED
+    if (likely(PyCFunction_Check(func) || __Pyx_CyFunction_Check(func)))
+#else
+    if (likely(PyCFunction_Check(func)))
+#endif
+    {
+        if (likely(PyCFunction_GET_FLAGS(func) & METH_NOARGS)) {
+            return __Pyx_PyObject_CallMethO(func, NULL);
+        }
+    }
+    return __Pyx_PyObject_Call(func, __pyx_empty_tuple, NULL);
+}
+#endif
 
 /* GetItemInt */
 static PyObject *__Pyx_GetItemInt_Generic(PyObject *o, PyObject* j) {

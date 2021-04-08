@@ -2,18 +2,19 @@
 # 03-04-2021
 # Some simple algorithms to work with the string sanitization projects from:
 #
-# https://github.com/Yebulabula/STD_FINAL_YEAR
+# https://github.com/Yebulabula/String-Sanitization-Project
 #
 # Author Ye Mao
 # King's College London
 # Version 1.0
-import time
+
 from collections import defaultdict
 import numpy as np
 import pandas as pd
 import random
 from node import ELLS_node, DummyNode
 import gc
+import DataProcessing
 
 
 def _non_zero(value):
@@ -23,16 +24,6 @@ def _non_zero(value):
         :return 0:
     """
     return 0 if value < 0 else value
-
-
-def delete(data, index):
-    """
-        The function to delete symbol at input index.
-        :param data: (string) The input data for delete.
-        :param index: (int) The index of deleted symbol
-        :return: (string) The string data after deletion.
-    """
-    return data[:index] + data[index + 1:]
 
 
 def delete_sequence(data, indices):
@@ -63,7 +54,7 @@ class solver:
 
     def __init__(self, w, k, delta, z, sensitive_patterns, tau, omega, c, max_simulations, tolerance):
         """
-            The constructor for solver class.
+            The constructor for the solver class.
             :param w: (string) The string data before sanitization.
             :param k: (int) The pattern length.
             :param delta: (int) The number of deletions are allowed to reduce distortion
@@ -74,7 +65,7 @@ class solver:
             ELLS-ALGO
             :param c: (int) The exploration parameter, which is used in ELLS-ALGO.
             :param max_simulations: (int) The number of simulations per decision.
-            :param tolerance: (int) The pruning factor of monte carlo search tree.
+            :param tolerance: (int) The pruning factor of Monte Carlo search tree.
         """
         self.W = w
         self.k = k
@@ -102,11 +93,11 @@ class solver:
 
     def _is_spurious(self, freq_z, freq_w):
         """
-            The function to check if a pattern is spurious pattern by using
+            The function to check if a pattern is a spurious pattern by using
             the frequency of such pattern in Z and W.
             :param freq_z: The frequency of the pattern in Z.
             :param freq_w: The frequency of the pattern in W.
-            :return: (Boolean) True if pattern is spurious, otherwise, false.
+            :return: (Boolean) True if the pattern is spurious; otherwise, false.
         """
         return True if freq_w < self.tau <= freq_z or \
                        freq_z < self.tau <= freq_w else False
@@ -122,7 +113,7 @@ class solver:
     def _search_nsens(self, data):
         """
             The function to search all non-sensitive patterns in data.
-            :param data: (string) A string consists of a sequence of length-k substring.
+            :param data: (string) A string consists of a sequence of the length-k substring.
             :return: dict{string:int} A dictionary to store all pattern : frequency pair in data.
         """
         pat_dict = defaultdict(int)
@@ -158,7 +149,8 @@ class solver:
             freq_Z = non_sens_z[pattern]
             freq_W = self.non_sens_w[pattern]
             distance = freq_Z - freq_W  # distortion of Z
-            reduction = np.square(distance + diff) - np.square(distance)  # distortion reduction of a single pattern.
+            reduction = np.square(distance + diff) - np.square(distance)
+            # distortion reduction of a single pattern.
             if self._is_spurious(freq_z=freq_Z,
                                  freq_w=freq_W):
                 spurious += reduction
@@ -171,8 +163,8 @@ class solver:
         """
             The function to calculate the distortion of data.
             Sigma_sum((distortion in W - distortion in data)^2)
-            :param data (string): A string consists of a sequence of length-k substring.
-            :return: (int,int): Distortion of spurious patten and distortion of non-spurious pattern.
+            :param data (string): A string consists of a sequence of a length-k substring.
+            :return: (int,int): Distortion of spurious pattern and distortion of the non-spurious pattern.
         """
         non_sens = self._search_nsens(data)
         patterns = set(list(self.non_sens_w.keys()) + list(non_sens.keys()))
@@ -189,7 +181,7 @@ class solver:
     def _GD_ALGO(self):
         """
             The function to run GD-ALGO. Such algorithm exploits greedy search to recursively
-            search current best deleted symbol until completing delta deletions.
+            search current best-deleted symbol until completing delta deletions.
             :return G: (string) The resulting string of GD-ALGO.
         """
         deleted_symbols = []
@@ -298,24 +290,23 @@ class solver:
                 if not reinstate: break
 
             simulation_reward += self._extract_r_score(state, policy)
-            state = delete(state, policy)
+            state = DataProcessing.delete(state, policy)
         return simulation_reward
 
     def _ELLS_ALGO(self, root, iterations):
         """
             The main function of ELLS-ALGO. This function recursively finding the most promising symbol to delete
-            by running a certain number of monte carlo cycles (Selection -> Expansion -> Simulation
-            -> Backpropogation) until all optimal delete characters.
-            :param root: (ELLS_node) The root node of the tree which stores the string to be deleted.
-            :param iterations: (int) The number of deletions required to make decision(select deleted symbol)
+            by running a certain number of Monte Carlo cycles (Selection -> Expansion -> Simulation
+            -> Backpropagation) until all optimal delete characters.
+            :param root: (ELLS_node) The root node of the tree stores the string to be deleted.
+            :param iterations: (int) The number of deletions required to make a decision(select deleted symbol)
             :return: H:(string) The resulting data after deletions.
         """
-
         # Base case of recursion: recursion terminates as only one remaining symbol need to be deleted.
         if self.remain_delete == 1:
             score = self._get_legal_deletions(root.state, strategy='all')  # greedy find current best deleted symbol
             self.ELLS_Total += score[0]
-            result = delete(root.state, score[1])
+            result = DataProcessing.delete(root.state, score[1])
             self.ELLS_track.append(result)
             return result
 
@@ -336,10 +327,10 @@ class solver:
                 simulate_score = selected_nodes_R
             # Simulation
             simulation_reward = self.simulation(simulate, simulate_score)
-            # Backpropogation
-            simulate.backpropogation(simulation_reward)
+            # Backpropagation
+            simulate.backpropagation(simulation_reward)
 
-        # Final deleted symbol selection -> select the node by max-robust child selection8 policy.
+        # Final deleted symbol selection -> select the node by max-robust child selection policy.
         best_child = None
         best_result = - float('inf')
         for child in root.children.values():
@@ -354,12 +345,13 @@ class solver:
         self.ELLS_Total += best_child.score
         best_child.refresh()
         gc.collect()
+
         # transform best root child to next tree's root node.
         return self._ELLS_ALGO(best_child, int(iterations))
 
     def run(self):
         """
-            The function to run CSD-Plus model. This function use the result of GD-ALGO as the lower bound,
+            The function to run CSD-Plus model. This function uses the result of GD-ALGO as the lower bound,
             followed by run ELLS-ALGO to further optimize the result based on it.
             :return L: (string) If the total R score of GD-ALGO is greater than or equal to the total
             R score of EllS-ALGO, the GD algorithm results are output; otherwise,
@@ -372,9 +364,9 @@ class solver:
 
     def baseline(self):
         """
-            The function of baseline algorithm. Firstly, sort the distortion of each pattern in descending
+            The function of the baseline algorithm. Firstly, sort the distortion of each pattern in descending
             order. Second, traverse each letter from the most distorted pattern to the least distorted pattern.
-            The loop will terminate if and only if current candidate letter does not incur any sensitive pattern.
+            The loop will terminate if and only if the current candidate letter does not incur any sensitive pattern.
             :return BA: (String) the string type of data, whose length is |Z| - delta.
         """
         Z = self.Z
@@ -392,9 +384,9 @@ class solver:
                 for victim in candidate[1]:
                     after = Z[_non_zero(victim - self.k + 1):victim] + Z[victim + 1: victim + self.k]
                     non_sens_after = self._search_nsens(after)
-                    if len(set(non_sens_after.keys()).intersection(set(self.S))) == 0: # check if 'victim' led to
-                        # any sensitive patterns.
-                        Z = delete(Z, victim)
+                    # check if 'victim' led to any sensitive patterns.
+                    if len(set(non_sens_after.keys()).intersection(set(self.S))) == 0:
+                        Z = DataProcessing.delete(Z, victim)
                         z_nsens = self._search_nsens(Z)
                         break
                     else:
@@ -420,12 +412,12 @@ class solver:
             "https://stackoverflow.com/questions/52356091/recursive-algorithm-to-
              generate-all-permutations-of-length-k-of-a-list-in-python"
         """
-        # if length of permutation is negative or 0, return empty
+        # if length of permutation is <= 0, return empty list
         if n <= 0:
             return [[]]
         # else take empty list l
         l = []
-        # loop over whole list
+        # loop over the whole list
         for i in range(0, len(lst)):
             m = lst[i]
             remLst = lst[:i] + lst[i + 1:]
@@ -435,6 +427,6 @@ class solver:
                     l.append(perm)
                     # all permutations with size delta.
                     if len(perm) == self.delta:
-                        tmp = delete_sequence(self.Z, perm)  # simulate deletes
+                        tmp = delete_sequence(self.Z, perm)  # simulate deletions
                         self.EX.append(sum(self._get_distortion(tmp)))  # insert each simulation result to list.
         return l

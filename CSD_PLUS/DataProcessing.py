@@ -1,4 +1,4 @@
-# model.py
+# DataProcessing.py
 # 03-04-2021
 # This file is for processing some .txt file and convert them to the string type.
 # Also, it includes all static functions that other scripts may need.
@@ -8,6 +8,7 @@
 # Author Ye Mao
 # King's College London
 # Version 1.0
+
 import os.path
 
 

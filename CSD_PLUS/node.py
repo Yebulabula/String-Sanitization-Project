@@ -2,7 +2,7 @@
 # 03-04-2021
 # Some simple algorithms to work with the string sanitization projects from:
 #
-# https://github.com/Yebulabula/STD_FINAL_YEAR
+# https://github.com/Yebulabula/String-Sanitization-Project
 #
 # Author Ye Mao
 # King's College London
@@ -45,7 +45,6 @@ class ELLS_node:
 
         self.children = defaultdict(ELLS_node)  # The collection of child nodes.
         self.isExpanded = False  # The boolean statement to check is the node has been expanded
-        self.min_reward = float('inf')  # The lowest reward for all simulations on the node.
         self.reward = 0  # The cumulative reward for all simulations on the node.
         self.visits = 0  # The number of visits on the node.
 
@@ -58,7 +57,7 @@ class ELLS_node:
 
     def compute_uct(self):
         """
-            The function to calculate UCT value of the node.
+            The function to calculate the UCT value of the node.
             :return: UCT(float): if the number of visits on the node is non-zero, we calculate the UCT
             of selected node by UCB1 formula:  -reward/visits + c * sqrt(log(parent visits) / visits)
         """
@@ -68,14 +67,9 @@ class ELLS_node:
         else:
             return float('inf')
 
-    def _is_fully_expanded(self):
-        for child in self.children.values():
-            if child.visits == 0: return False
-        return True
-
     def select_leaf(self):
         """
-            The function to recursively select the current most promising node (maximizes UCT) until reaches
+            The function to recursively select the current most promising node (maximizes UCT) until it reaches
             the leaf node.
             :return: current(ELLS_node) The current best leaf node. Such node will also be used in further
                      expansion and simulation step.
@@ -98,7 +92,7 @@ class ELLS_node:
             selected_nodes_R += current.score
         return current, selected_nodes_R
 
-    def backpropogation(self, simulation_reward):
+    def backpropagation(self, simulation_reward):
         """
             The function to update the current 'move'(delete) sequence with the simulation result.
             :param simulation_reward:(int) The total R-score of the simulation.
@@ -108,8 +102,6 @@ class ELLS_node:
         while current.parent is not None:
             current.visits += 1
             current.reward += simulation_reward
-            if simulation_reward < current.min_reward:
-                current.min_reward = simulation_reward
             current = current.parent
 
     def expand(self, legal_deletions, c):
@@ -133,7 +125,7 @@ class ELLS_node:
 
     def refresh(self):
         """
-            The function to refresh reward and score of the node.
+            The function to refresh the reward and score of the node.
             :return: None
         """
         self.reward = 0
