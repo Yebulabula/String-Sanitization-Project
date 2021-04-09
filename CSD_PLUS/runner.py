@@ -93,6 +93,5 @@ if __name__ == '__main__':
     tock = time.time()
     print('CSD-PLUS Distortion Reduction\nSpurious:', sp - d_csd_plus[0], 'non-spurious:', nsp - d_csd_plus[1])
     print('Time consumption in CSD-Plus is', tock - tick)
-
     # solver._exhaustive_search(lst=list(range(len(solver.Z))), n=solver.delta)
     # print('Exhaustive Search:', min(solver.EX))

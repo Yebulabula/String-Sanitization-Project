@@ -61,9 +61,8 @@ class ELLS_node:
             :return: UCT(float): if the number of visits on the node is non-zero, we calculate the UCT
             of selected node by UCB1 formula:  -reward/visits + c * sqrt(log(parent visits) / visits)
         """
-        parent_visits = self.parent.visits
         if self.visits != 0:
-            return - self.reward / self.visits + self.C * math.sqrt(math.log(parent_visits) / self.visits)
+            return - self.reward / self.visits + self.C * math.sqrt(math.log(self.parent.visits) / self.visits)
         else:
             return float('inf')
 
@@ -130,7 +129,6 @@ class ELLS_node:
         """
         self.reward = 0
         self.score = 0
-
 
 class DummyNode(object):
     """

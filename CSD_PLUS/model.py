@@ -273,13 +273,18 @@ class solver:
         state = simulate.state
         actions = len(state) + self.delta - len(self.Z)
         simulation_reward = selected_nodes_R + self.ELLS_Total
-
         for i in range(actions):
-            # The legally deleted characters cannot be the same as the neighbors.
-            legals = [i for i in range(len(state) - 1) if state[i] != state[i + 1]]
-            legals.append(len(state) - 1)
             while 1:
-                policy = random.choice(list(range(len(state))))
+                policy = random.randint(0, len(state) - 1)
+                # The legal deleted characters cannot be the same as the neighbours. Such
+                # method can ensure that the symbols deleted for this simulation node are
+                # completely different each time.
+                # Experimental result proves that random function is more effective than
+                # searching for all legal deletions for each deletions.
+                neighbor_right = policy + 1
+                if neighbor_right < len(state):
+                    if state[policy] == state[neighbor_right]:
+                        continue
                 # Consider only the deletion that does not incur any sensitive patterns.
                 reinstate = False
                 after = state[_non_zero(policy - self.k + 1):policy] + state[policy + 1: policy + self.k]
@@ -288,7 +293,6 @@ class solver:
                         reinstate = True
                         break
                 if not reinstate: break
-
             simulation_reward += self._extract_r_score(state, policy)
             state = DataProcessing.delete(state, policy)
         return simulation_reward
@@ -318,6 +322,7 @@ class solver:
             # Selection
             simulate, selected_nodes_R = root.select_leaf()
 
+            # Expansion delay
             if simulate.visits > 3 and len(self.Z) - len(simulate.state) < self.delta:
                 # Expansion
                 simulate.expand(self._get_legal_deletions(simulate.state), self.C)
@@ -334,8 +339,9 @@ class solver:
         best_child = None
         best_result = - float('inf')
         for child in root.children.values():
-            if - child.reward + child.visits > best_result:
-                best_result = - child.reward + child.visits
+            score = - child.reward + child.visits
+            if score > best_result:
+                best_result = score
                 best_child = child
         self.ELLS_track.append(best_child.state)
 

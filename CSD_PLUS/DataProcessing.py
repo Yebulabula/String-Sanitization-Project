@@ -21,7 +21,6 @@ def delete(data, index):
     """
     return data[:index] + data[index + 1:]
 
-
 def readFile(filename):
     """
         The function to read the file and store the content the file as string type.
