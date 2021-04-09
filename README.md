@@ -7,9 +7,10 @@ Install python 3.8
 https://www.python.org/downloads/release/python-380/
 
 - pip install numpy
-- pip install Pandas
+- pip install pandas
 - pip install matplotlib
 - pip install Pillow
+- pip install Cython
 
 ## Modify the content of the file:
 python setup.py build_ext  --inplace
