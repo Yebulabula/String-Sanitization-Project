@@ -7,7 +7,7 @@ Install python 3.8
 https://www.python.org/downloads/release/python-380/
 
 - pip install numpy
-- pip install pandas
+- pip install Pandas
 - pip install matplotlib
 - pip install Pillow
 
