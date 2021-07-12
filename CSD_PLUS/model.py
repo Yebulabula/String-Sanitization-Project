@@ -121,6 +121,12 @@ class solver:
             pat_dict[data[i:i + self.k]] += 1
         return pat_dict
 
+    def _score_of_ghosts(self, freq_diff):
+        if freq_diff == 0:
+            return float('inf')
+        else:
+            return -1 / freq_diff
+
     def _get_score(self, current, non_sens_z, index):
         """
             The function to calculate the R-score of deleting a letter at input index from a current string.
@@ -137,26 +143,38 @@ class solver:
 
         non_sens_before = self._search_nsens(before)
         non_sens_after = self._search_nsens(after)
-
         affected_patterns = set(list(non_sens_after.keys()) + list(non_sens_before.keys()))
 
-        spurious, non_spurious = 0, 0
+        distortion_score, ghost_and_losts_score = 0.0, 0.0
         for pattern in affected_patterns:
+
             diff = non_sens_after[pattern] - non_sens_before[pattern]
+
+            if diff == 0:
+                continue
+
             if non_sens_after[pattern] > 0 and self._is_sensitve(pattern):
                 return float('inf'), None  # output infinity as reinstating sensitive pattern.
+
             new_dict[pattern] = diff
             freq_Z = non_sens_z[pattern]
             freq_W = self.non_sens_w[pattern]
+
             distance = freq_Z - freq_W  # distortion of Z
-            reduction = np.square(distance + diff) - np.square(distance)
-            # distortion reduction of a single pattern.
+
+            distortion_score += pow(distance + diff, 2) - pow(distance, 2)
+
             if self._is_spurious(freq_z=freq_Z,
                                  freq_w=freq_W):
-                spurious += reduction
+                if not self._is_spurious(freq_z=diff + freq_Z, freq_w=freq_W):
+                    ghost_and_losts_score -= 200
+                else:
+                    ghost_and_losts_score += -1 / (abs(diff + freq_Z - self.tau) + 0.1)
             else:
-                non_spurious += reduction
-        score = spurious + self.omega * non_spurious  # calculate R-score
+                if self._is_spurious(freq_z=diff + freq_Z, freq_w=freq_W):
+                    ghost_and_losts_score += 200
+
+        score = ghost_and_losts_score + self.omega * distortion_score
         return score, new_dict
 
     def _get_distortion(self, data):
@@ -168,15 +186,27 @@ class solver:
         """
         non_sens = self._search_nsens(data)
         patterns = set(list(self.non_sens_w.keys()) + list(non_sens.keys()))
-        non_spurious, spurious = 0, 0
+        return sum([np.square(self.non_sens_w[pattern] - non_sens[pattern]) for pattern in patterns])
+
+    def _get_number_of_spurious(self, data):
+        non_sens = self._search_nsens(data)
+        patterns = set(list(self.non_sens_w.keys()) + list(non_sens.keys()))
+        ghostsAndLosts = 0
         for pattern in patterns:
-            distortion = np.square(self.non_sens_w[pattern] - non_sens[pattern])
             if self._is_spurious(freq_z=non_sens[pattern],
                                  freq_w=self.non_sens_w[pattern]):
-                spurious += distortion
-            else:
-                non_spurious += distortion
-        return spurious, non_spurious
+                ghostsAndLosts += 1
+        return ghostsAndLosts
+
+    def _get_spurious(self, data):
+        non_sens = self._search_nsens(data)
+        patterns = set(list(self.non_sens_w.keys()) + list(non_sens.keys()))
+        ghostsAndLosts = []
+        for pattern in patterns:
+            if self._is_spurious(freq_z=non_sens[pattern],
+                                 freq_w=self.non_sens_w[pattern]) and pattern not in ghostsAndLosts:
+                ghostsAndLosts.append(pattern)
+        return ghostsAndLosts
 
     def _GD_ALGO(self):
         """
@@ -189,17 +219,25 @@ class solver:
         non_sens_z = self._search_nsens(Z)
 
         for i in range(self.delta):
-            scores = [(delete, *self._get_score(current=Z,
-                                                non_sens_z=non_sens_z,
-                                                index=delete)) for delete in range(len(Z))]
+            best_delete = None
+            best_score = float('inf')
+            best_non_sens = None
+            for j in range(len(Z)):
+                if Z[i] != Z[i + 1] or i == len(Z) - 1:
+                    score, non_sens = self._get_score(current=Z,
+                                                      non_sens_z=non_sens_z,
+                                                      index=j)
+                    if score < best_score:
+                        best_delete = j
+                        best_score = score
+                        best_non_sens = non_sens
 
-            df = pd.DataFrame(scores, columns=['A', 'B', 'C'])
-            best_delete, best_score, best_non_sens = scores[df['B'].argmin()]
             for key, value in best_non_sens.items():
                 non_sens_z[key] += value
             Z = Z[:best_delete] + Z[best_delete + 1:]
             self.GD_track.append(Z)
             deleted_symbols.append(best_delete)
+            print(best_score)
             self.GD_Total += best_score
         return Z
 
@@ -252,13 +290,9 @@ class solver:
                     min = score
 
         scores.append((self._extract_r_score(data, len(data) - 1), len(data) - 1))
-
         if strategy != 'all':
-            if len(scores) != 1:
-                max = min + self.tolerance
-                return list(filter(lambda f: f[0] <= max, scores)) if len(scores) > 0 else []
-            else:
-                return scores
+            max = min + self.tolerance
+            return [scores[i] for i in range(0, len(scores)) if min <= scores[i][0] <= max]
         else:
             scores.sort(key=lambda x: x[0])
             return scores[0]
@@ -286,13 +320,13 @@ class solver:
                     if state[policy] == state[neighbor_right]:
                         continue
                 # Consider only the deletion that does not incur any sensitive patterns.
-                reinstate = False
                 after = state[_non_zero(policy - self.k + 1):policy] + state[policy + 1: policy + self.k]
                 for j in range(len(after) - self.k + 1):
                     if self._is_sensitve(after[j:j + self.k]):
-                        reinstate = True
                         break
-                if not reinstate: break
+                else:
+                    break
+
             simulation_reward += self._extract_r_score(state, policy)
             state = DataProcessing.delete(state, policy)
         return simulation_reward
@@ -317,11 +351,9 @@ class solver:
         # Expand the root node beforehand.
         if not root.isExpanded:
             root.expand(self._get_legal_deletions(root.state), self.C)
-
         for _ in range(iterations):
             # Selection
             simulate, selected_nodes_R = root.select_leaf()
-
             # Expansion delay
             if simulate.visits > 3 and len(self.Z) - len(simulate.state) < self.delta:
                 # Expansion
@@ -338,6 +370,8 @@ class solver:
         # Final deleted symbol selection -> select the node by max-robust child selection policy.
         best_child = None
         best_result = - float('inf')
+        # print(self._get_number_of_spurious(root.state))
+        print([child.visits for child in root.children.values()])
         for child in root.children.values():
             score = - child.reward + child.visits
             if score > best_result:
@@ -348,6 +382,8 @@ class solver:
         # Search tree reuse
         iterations = self.max_simulations - np.sum([child.visits for child in best_child.children.values()])
         self.remain_delete -= 1
+        # print('best score each step:', best_child.score)
+        # print(self._get_number_of_spurious(best_child.state))
         self.ELLS_Total += best_child.score
         best_child.refresh()
         gc.collect()
@@ -366,6 +402,11 @@ class solver:
 
         H = self._GD_ALGO()
         G = self._ELLS_ALGO(self.root, self.max_simulations)
+        # print('H:', H, 'G:', G)
+        print('H ghosts:', self._get_number_of_spurious(H), 'G ghosts:', self._get_number_of_spurious(G))
+        print('H distortion', self._get_distortion(H), 'G distortion', self._get_distortion(G))
+        print(self.GD_Total, self.ELLS_Total)
+        # return H
         return [G, H][self.GD_Total < self.ELLS_Total]
 
     def baseline(self):
